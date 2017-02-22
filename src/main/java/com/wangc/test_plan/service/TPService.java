@@ -22,5 +22,7 @@ public class TPService {
         tpMapper.insert(tp);
     }
     
-    
+    public List<TestPlanBean> select(TestPlanBean tp){
+        return tpMapper.select(tp);
+    }
 }

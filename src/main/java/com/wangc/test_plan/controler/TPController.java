@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,12 +22,13 @@ public class TPController {
 
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public String list(Model model,@RequestParam String sName){
+    public String list(Model model,@RequestParam String sName,@ModelAttribute TestPlanBean tp){
         System.out.println("========"+sName);
+        System.out.println("==========="+tp.getTpName());
         
-        //// TODO: wangc@2017/2/10 
-//        List list = tpService.list();
-//        model.addAttribute("tp_list",list);
+        
+        List list = tpService.select(null);
+        model.addAttribute("tp_list",list);
 //        
         return "/test_plan/list";
     }

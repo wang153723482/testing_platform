@@ -9,6 +9,28 @@
         values(#{tpName},#{url},#{description},#{generater})
     </insert>
 
+    <select id="select" parameterType="com.wangc.test_plan.bean.TestPlanBean"
+    resultType="com.wangc.test_plan.bean.TestPlanBean">
+        select id,tp_name,url,description,generater
+        from test_plan
+        <where>
+            <if test="null!=id">
+                and id=#{id}
+            </if>
+            <if test="null!=tpName">
+                and tp_name=#{tpName}
+            </if>
+            <if test="null!=url">
+                and url=#{url}
+            </if>
+            <if test="null!=description">
+                and description=#{description}
+            </if>
+            <if test="null!=generater">
+                and generater=#{generater}
+            </if>
+        </where> 
+    </select>
 
 
 </mapper>

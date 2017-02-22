@@ -16,5 +16,6 @@ public interface TPMapper {
     
     int insert(TestPlanBean testPlanBean);
     
+    List<TestPlanBean> select(TestPlanBean testPlanBean);
     
 }
