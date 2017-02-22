@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<form action="index.html" method="post">
+    <table border="0">
+        <tr >
+            <td >URL</td>
+            <td ><input type="text" id="url" name="url"/>例如：http://domain.com/path/add</td>
+        </tr>
+        <tr >
+            <td >method</td>
+            <td ><select name="method" id="method">
+                <option value="post" selected="selected">post</option>
+                <option value="get">get</option>
+            </select></td>
+        </tr>
+        <tr >
+            <td >虚拟用户数量</td>
+            <td ><input type="text" id="vu_count" name="vu_count"/></td>
+        </tr>
+        <tr >
+            <td >持续时间(秒)</td>
+            <td ><input type="text" id="duration" name="duration"/></td>
+        </tr>
+        <hr>
+        <tr >
+            <td >测试数据生成类</td>
+            <td ><select id="generate_class" name="generate_class">
+                <option id="" value="com.wangc.generate.ItunesTdCre">com.wangc.generate.ItunesTdCre</option><%--自动读取项目某接口的所有实现类--%>
+            </select></td>
+        </tr>
+        <tr >
+            <td >测试数据生成类参数</td>
+            <td ><input type="text" id="generate_class_param" name="generate_class_param"/></td>
+        </tr>
+        <tr >
+            <td >测试数据生成类依赖数据文件</td>
+            <td ><input type="text" id="generate_class_file" name="generate_class_file"/></td><%--todo 上传文件--%>
+        </tr>
+
+        <tr >
+            <td ></td>
+            <td ><input type="submit" id="submit" name="submit" value="提交"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

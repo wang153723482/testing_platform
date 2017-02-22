@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangc.test_plan.mapper.TPMapper">
+
+
+
+    <insert id="insert" parameterType="com.wangc.test_plan.bean.TestPlanBean">
+        insert into test_plan(tp_name,url,description,generater) 
+        values(#{tpName},#{url},#{description},#{generater})
+    </insert>
+
+
+
+</mapper>

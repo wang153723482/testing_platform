@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>TP_LIST_ADD</title>
+</head>
+<body>     
+<!--/*@thymesVar id="tp" type="com.wangc.test_plan.bean.TestPlanBean"*/-->
+
+<form th:action="@{/tp/add}" th:method="post" th:object="${tp}">
+<table >
+    <tr>
+        <td >测试计划名称</td>
+        <td ><input th:name="tpName" type="text" /></td>
+    </tr>
+    <tr>
+        <td >url</td>
+        <td ><input th:name="url" type="text" /></td>
+    </tr>
+    <tr>
+        <td >测试说明</td>
+        <td ><input th:name="description" type="text" /></td>
+    </tr>
+    <tr>
+        <td >测试数据生成类</td>
+        <td ><input th:name="generater" th:id="generater" type="text" /></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="submit" id="submit" name="submit"/></td>
+    </tr>
+    
+</table>
+
+</form>
+</body>
+</html>
