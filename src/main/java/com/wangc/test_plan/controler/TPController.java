@@ -22,8 +22,7 @@ public class TPController {
 
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public String list(Model model,@RequestParam String sName,@ModelAttribute TestPlanBean tp){
-        System.out.println("========"+sName);
+    public String list(Model model,@ModelAttribute TestPlanBean tp){
         System.out.println("==========="+tp.getTpName());
         
         
@@ -35,13 +34,11 @@ public class TPController {
     
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String add(Model model){
-        
         return "/test_plan/add";
     }
     
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public String add(Model model, TestPlanBean tp){
-
         tpService.insert(tp);
         System.out.println(tp.getTpName());
 //        
