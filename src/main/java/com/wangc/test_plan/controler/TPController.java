@@ -25,7 +25,6 @@ public class TPController {
     public String list(Model model,@ModelAttribute TestPlanBean tp){
         System.out.println("==========="+tp.getTpName());
         
-        
         List<TestPlanBean> list = tpService.select(null);
         for(int i=0; i<list.size(); i++){
             TestPlanBean t = list.get(i);
@@ -51,6 +50,23 @@ public class TPController {
 //        
 //        return "/test_plan/add";
         return "redirect:/tp/list?sName=qwe";
+    }
+
+    @RequestMapping(value = "/modify",method = RequestMethod.GET)
+    public String modify(Model model,@RequestParam String id){
+        List<TestPlanBean> list = tpService.selectById(id);
+        if(null!=list && !list.isEmpty()){
+            System.out.println("==========");
+            System.out.println( list.get(0) );
+            model.addAttribute( "tp",list.get(0));
+        }
+        return "/test_plan/modify";
+    }
+
+    @RequestMapping(value = "/modify",method = RequestMethod.POST)
+    public String modify(Model model,@ModelAttribute TestPlanBean tp){
+        tpService.update(tp);
+        return "redirect:/tp/list";
     }
     
     

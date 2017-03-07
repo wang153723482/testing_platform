@@ -7,23 +7,23 @@
 <body>     
 <!--/*@thymesVar id="tp" type="com.wangc.test_plan.bean.TestPlanBean"*/-->
 
-<form th:action="@{/tp/add}" th:method="post" th:object="${tp}">
+<form th:action="@{/tp/modify}" th:method="post" >
 <table >
     <tr>
         <td >测试计划名称</td>
-        <td ><input th:name="tpName" type="text" /></td>
+        <td ><input th:name="tpName" type="text" th:value="${tp.tpName}"  /></td>
     </tr>
     <tr>
         <td >url</td>
-        <td ><input th:name="url" type="text" /></td>
+        <td ><input th:name="url" type="text" th:value="${tp.url}" /></td>
     </tr>
     <tr>
         <td >测试描述</td>
-        <td ><input th:name="description" type="text" /></td>
+        <td ><input th:name="description" th:type="text" th:value="${tp.description}"/></td>
     </tr>
     <tr>
         <td >测试数据生成类</td>
-        <td ><input th:name="generater" th:id="generater" type="text" /></td>
+        <td ><input th:name="generater" th:id="generater" th:type="text" th:value="${tp.generater}"/></td>
     </tr>
     <tr>
         <td></td>

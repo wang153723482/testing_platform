@@ -31,6 +31,13 @@
             </if>
         </where> 
     </select>
+   
+    <select id="update" parameterType="com.wangc.test_plan.bean.TestPlanBean"
+    resultType="com.wangc.test_plan.bean.TestPlanBean">
+        update test_plan
+        set tp_name=#{tpName},url=#{url},description=#{description},generater=#{generater}
+        where id=#{id}
+    </select>
 
 
 </mapper>

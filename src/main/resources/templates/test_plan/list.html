@@ -41,9 +41,10 @@
 <table  th:id="customers">
     <thead>
     <tr>
-        <th>s</th>
-        <th>s2</th>
-        <th>d</th>
+        <th>测试计划名称</th>
+        <th>url</th>
+        <th>测试描述</th>
+        <th>操作</th>
     </tr>
     </thead>
     
@@ -52,7 +53,12 @@
         <td th:text="${tp.tpName}"></td>
         <td th:text="${tp.url}"></td>
         <td th:text="${tp.description}"></td>
-
+        <td >
+            <!--<a th:href="/tp/modify?id=${tp.id}">修改</a>-->
+            <a th:href="@{/tp/modify(id=${tp.id})}">修改</a>
+            <a href="/tp_do/exc">执行</a>
+            <a href="/tp_log/list">查看日志</a>
+        </td>
     </tr>
     </tbody>
     

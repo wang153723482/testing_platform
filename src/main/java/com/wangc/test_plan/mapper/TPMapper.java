@@ -18,4 +18,6 @@ public interface TPMapper {
     
     List<TestPlanBean> select(TestPlanBean testPlanBean);
     
+    int update(TestPlanBean testPlanBean);
+    
 }

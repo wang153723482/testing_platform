@@ -7,10 +7,19 @@ import org.springframework.context.annotation.Bean;
  * 测试计划名称、压测地址url、测试说明、测试数据生成类
  */
 public class TestPlanBean {
-    private String  tpName;
+    private String id;
+    private String tpName;
     private String url;
     private String description;
     private String generater;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTpName() {
         return tpName;
@@ -42,5 +51,22 @@ public class TestPlanBean {
 
     public void setGenerater(String generater) {
         this.generater = generater;
+    }
+
+    @Override
+    public String toString() {
+        return new StringBuilder("TestPlanBean:{")
+                .append("'id':'")
+                .append(id)
+                .append("','tpName':'")
+                .append(tpName)
+                .append("','url':'")
+                .append(url)
+                .append("','description':'")
+                .append(description)
+                .append("','generater':'")
+                .append(generater)
+                .append("'}")
+                .toString();
     }
 }
