@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.lang.Math.sqrt;
+
 /**
  * Created by wangchao on 2017/2/10.
  */
@@ -23,6 +25,8 @@ public class TPService {
     }
     
     public List<TestPlanBean> select(TestPlanBean tp){
+        
         return tpMapper.select(tp);
+        
     }
 }
