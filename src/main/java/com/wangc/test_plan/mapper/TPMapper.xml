@@ -39,10 +39,23 @@
         </where> 
     </select>
    
-    <select id="update" parameterType="com.wangc.test_plan.bean.TestPlanBean">
+    <select id="update" parameterType="com.wangc.test_plan.bean.TestPlanBean" resultType="java.lang.Integer">
         update test_plan
-        set tp_name=#{tpName},url=#{url},description=#{description},generater=#{generater}
-        where id=#{id}
+        <set>
+            <if test="tpName != null">
+                tp_name = #{tpName,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="generater != null">
+                generater = #{generater,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
     </select>
 
 

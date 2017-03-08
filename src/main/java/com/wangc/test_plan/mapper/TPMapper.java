@@ -13,11 +13,11 @@ import java.util.List;
 
 @Mapper
 public interface TPMapper {
-    
-    int insert(TestPlanBean testPlanBean);
+
+    Integer insert(TestPlanBean testPlanBean);
     
     List<TestPlanBean> select(TestPlanBean testPlanBean);
-    
-    int update(TestPlanBean testPlanBean);
+
+    Integer update(TestPlanBean testPlanBean);
     
 }

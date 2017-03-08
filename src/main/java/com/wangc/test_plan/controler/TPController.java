@@ -26,13 +26,6 @@ public class TPController {
         System.out.println("==========="+tp.getTpName());
         
         List<TestPlanBean> list = tpService.select(null);
-        for(int i=0; i<list.size(); i++){
-            TestPlanBean t = list.get(i);
-            System.out.println(t.getTpName());
-            System.out.println(t.getDescription());
-            System.out.println(t.getGenerater());
-            System.out.println(t.getUrl());
-        }
         model.addAttribute("tp_list",list);
 //        
         return "/test_plan/list";
@@ -67,6 +60,7 @@ public class TPController {
     public String modify(Model model,@ModelAttribute TestPlanBean tp){
         System.out.println(tp);
         tpService.update(tp);
+        System.out.println("====================================ok");
         return "redirect:/tp/list";
     }
     

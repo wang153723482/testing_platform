@@ -9,6 +9,7 @@
 
 <form th:action="@{/tp/modify}" th:method="post" >
 <table >
+    <input type="hidden" th:name="id" th:value="${tp.id}"/>
     <tr>
         <td >测试计划名称</td>
         <td ><input th:name="tpName" type="text" th:value="${tp.tpName}"  /></td>
