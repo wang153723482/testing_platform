@@ -65,6 +65,7 @@ public class TPController {
 
     @RequestMapping(value = "/modify",method = RequestMethod.POST)
     public String modify(Model model,@ModelAttribute TestPlanBean tp){
+        System.out.println(tp);
         tpService.update(tp);
         return "redirect:/tp/list";
     }

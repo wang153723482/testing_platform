@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wangc.test_plan.mapper.TPMapper">
 
+    <resultMap id="testPlanBean" type="com.wangc.test_plan.bean.TestPlanBean">
+        <id property="id" column="id"></id>
+        <result property="tpName" column="tp_name"></result>
+        <result property="url" column="url"></result>
+        <result property="description" column="description"></result>
+        <result property="generater" column="generater"></result>
+    </resultMap>
 
 
     <insert id="insert" parameterType="com.wangc.test_plan.bean.TestPlanBean">
@@ -10,7 +17,7 @@
     </insert>
 
     <select id="select" parameterType="com.wangc.test_plan.bean.TestPlanBean"
-    resultType="com.wangc.test_plan.bean.TestPlanBean">
+    resultMap="testPlanBean">
         select id,tp_name,url,description,generater
         from test_plan
         <where>
@@ -32,8 +39,7 @@
         </where> 
     </select>
    
-    <select id="update" parameterType="com.wangc.test_plan.bean.TestPlanBean"
-    resultType="com.wangc.test_plan.bean.TestPlanBean">
+    <select id="update" parameterType="com.wangc.test_plan.bean.TestPlanBean">
         update test_plan
         set tp_name=#{tpName},url=#{url},description=#{description},generater=#{generater}
         where id=#{id}
