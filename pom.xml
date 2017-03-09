@@ -79,6 +79,16 @@
             <version>1.5.1.RELEASE</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.beetl/beetl-core -->
+        <dependency>
+            <groupId>org.beetl</groupId>
+            <artifactId>beetl-core</artifactId>
+            <version>2.2.5</version>
+        </dependency>
+        
+
+
+
 
 
     </dependencies>

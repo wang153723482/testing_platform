@@ -10,9 +10,20 @@ public class TestPlanBean {
     private String id;
     private String tpName;
     private String url;
+    
     private String description;
     private String generater;
+    
+    //url属性分解成下面4个属性
+    private String protocol;
+    private String serverName;
+    private String portNum;
+    private String path;
+    
+    
 
+    
+    
     public String getId() {
         return id;
     }
