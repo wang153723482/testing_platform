@@ -4,41 +4,41 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>TP_LIST</title>
     <style type="text/css">
-        #customers
-        {
-            font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-            width:100%;
-            border-collapse:collapse;
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            width: 100%;
+            border-collapse: collapse;
         }
 
-        #customers td, #customers th
-        {
-            font-size:1em;
-            border:1px solid #98bf21;
-            padding:3px 7px 2px 7px;
+        #customers td, #customers th {
+            font-size: 1em;
+            border: 1px solid #98bf21;
+            padding: 3px 7px 2px 7px;
         }
 
-        #customers th
-        {
-            font-size:1.1em;
-            text-align:left;
-            padding-top:5px;
-            padding-bottom:4px;
-            background-color:#A7C942;
-            color:#ffffff;
+        #customers th {
+            font-size: 1.1em;
+            text-align: left;
+            padding-top: 5px;
+            padding-bottom: 4px;
+            background-color: #A7C942;
+            color: #ffffff;
         }
 
-        #customers tr.alt td
-        {
-            color:#000000;
-            background-color:#EAF2D3;
+        #customers tr.alt td {
+            color: #000000;
+            background-color: #EAF2D3;
         }
     </style>
+    <style th:href="@{/layer/skin/default/layer.css}"></style>
+    <script th:src="@{/js/jquery-1.12.3.min.js}"></script>
+    <script th:src="@{/layer/layer.js}"></script>
+
 </head>
-<body>     
+<body>
 <!--/*@thymesVar id="tp" type="com.wangc.test_plan.bean.TestPlanBean"*/-->
 
-<table  th:id="customers">
+<table th:id="customers">
     <thead>
     <tr>
         <th>测试计划名称</th>
@@ -47,23 +47,70 @@
         <th>操作</th>
     </tr>
     </thead>
-    
+
+    <!--/*@thymesVar id="tp_list" type="java.util.ArrayList"*/-->
     <tbody th:each="tp:${tp_list}">
     <tr>
-        <td th:text="${tp.tpName}"></td>
-        <td th:text="${tp.url}"></td>
-        <td th:text="${tp.description}"></td>
-        <td >
-            <!--<a th:href="/tp/modify?id=${tp.id}">修改</a>-->
-            <a th:href="@{/tp/modify(id=${tp.id})}">修改</a>
-            <a href="/tp_do/exc">执行</a>
-            <a href="/tp_log/list">查看日志</a>
-        </td>
+        <td th:name="tp_name" th:text="${tp.tpName}"></td>
+        <td th:name="url" th:text="${tp.url}"></td>
+        <td th:name="description" th:text="${tp.description}"></td>
+        <td>
+            <input type="hidden" th:name="id" th:value="${tp.id}"/>
+            <a th:href="@{/tp/modify(id=${tp.id})}" th:name="a_modify" th:value="${tp.id}">修改</a>
+            <a href="#" th:name="a_exc">执行</a>
+            <a th:href="@{/tp_log/list}" th:name="a_loglist">查看日志</a>
+        </td>                           
     </tr>
     </tbody>
-    
-   
+
 </table>
 
+<input type="button" id="mybu" name=""/>
+
+<div id="run_plan" style="display: none;">
+    <!--/*@thymesVar id="rp" type="com.wangc.test_plan.bean.RunPlanBean"*/-->
+    <form th:action="@{/rp/add}" th:method="post" th:object="${rp}">
+        <input type="hidden" th:id="tId" th:name="tId"/>
+        <table>
+            <tr>
+                <td>虚拟用户数</td>
+                <td><input type="text" th:id="usersNum" th:name="usersNum"/></td>
+            </tr>
+            <tr>
+                <td>持续时间</td>
+                <td><input type="text" th:id="duration" th:name="duration"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" id="submit" name=""/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
 </body>
+
+<script>
+    $(document).ready(function () {
+
+
+        $("a[name='a_exc']").click(function () {
+            var o_this = $(this).parent("input"); 
+            alert(o_this.val());
+            
+            
+            $("#t_id").val( o_id.val() );
+            
+            //页面层-自定义
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['420px', '240px'], //宽高
+                content: $("#run_plan").html()
+            });
+
+        });
+
+    });
+</script>
 </html>
