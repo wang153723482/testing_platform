@@ -22,35 +22,29 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
-<!--        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-        </dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.2.0</version>
         </dependency>
+
 
         <!-- mysql 驱动 -->
         <dependency>
@@ -58,6 +52,9 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.39</version>
         </dependency>
+
+
+
         <!-- 数据库连接池 -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -65,14 +62,14 @@
             <version>1.0.18</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.10</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -83,9 +80,18 @@
         <dependency>
             <groupId>org.beetl</groupId>
             <artifactId>beetl-core</artifactId>
-            <version>2.2.5</version>
+            <version>2.2.3</version>
         </dependency>
-        
+     
+
+
+
+
+
+
+
+
+
 
 
 
@@ -123,7 +129,7 @@
     </build>
 
 
-    
+
 
 
 
