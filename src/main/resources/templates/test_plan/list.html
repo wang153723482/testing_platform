@@ -55,7 +55,7 @@
         <td th:name="url" th:text="${tp.url}"></td>
         <td th:name="description" th:text="${tp.description}"></td>
         <td>
-            <input type="hidden" th:name="id" th:value="${tp.id}"/>
+            <input type="text" th:name="id" th:value="${tp.id}"/>
             <a th:href="@{/tp/modify(id=${tp.id})}" th:name="a_modify" th:value="${tp.id}">修改</a>
             <a href="#" th:name="a_exc">执行</a>
             <a th:href="@{/tp_log/list}" th:name="a_loglist">查看日志</a>
@@ -70,7 +70,7 @@
 <div id="run_plan" style="display: none;">
     <!--/*@thymesVar id="rp" type="com.wangc.test_plan.bean.RunPlanBean"*/-->
     <form th:action="@{/rp/add}" th:method="post" th:object="${rp}">
-        <input type="hidden" th:id="tId" th:name="tId"/>
+        <input type="text" th:id="tId" th:name="tId"/>
         <table>
             <tr>
                 <td>虚拟用户数</td>
@@ -95,11 +95,9 @@
 
 
         $("a[name='a_exc']").click(function () {
-            var o_this = $(this).parent("input"); 
-            alert(o_this.val());
-            
-            
-            $("#t_id").val( o_id.val() );
+            var o_id = $(this).parent().find("[name='id']");
+            $("#tId").val( o_id.val() );
+            $("#run_plan").show();
             
             //页面层-自定义
             layer.open({
