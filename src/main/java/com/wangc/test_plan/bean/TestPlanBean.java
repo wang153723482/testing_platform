@@ -1,19 +1,28 @@
 package com.wangc.test_plan.bean;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.validation.Valid;
+
 /**
  * Created by wangchao on 2017/2/10.
  * 测试计划名称、压测地址url、测试说明、测试数据生成类
  */
 
+@Component
 public class TestPlanBean {
     private String id;
     private String tpName;
     private String url;
     private String description;
     private String generater;
-    private String protocol;
+    @Value("${tp.protocol}")
+     String protocol;
     private String serverName;
+    @Value("${tp.portNum}")
     private String portNum;
+    
     private String path;
     
     public String getId() {

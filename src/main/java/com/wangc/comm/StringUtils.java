@@ -12,6 +12,18 @@ public class StringUtils {
         return String.format("%0"+n+"d", d);
     }
     
+    //是否存在当前月份的目录，如果不存则创建
+    public static void isHasMonthDir(){
+        
+        
+        
+    }
+    
+    //判断是否存在目录d，如果不存在则创建
+    public static void isHasDir(String d){
+        
+    }
+    
     public static void main(String[] args){
         System.out.println( dd(1,9) );
     }

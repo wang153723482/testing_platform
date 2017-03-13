@@ -57,12 +57,7 @@ public class TPController {
 
     @RequestMapping(value = "/modify",method = RequestMethod.GET)
     public String modify(Model model,@RequestParam String id){
-        List<TestPlanBean> list = tpService.selectById(id);
-        if(null!=list && !list.isEmpty()){
-            System.out.println("==========");
-            System.out.println( list.get(0) );
-            model.addAttribute( "tp",list.get(0));
-        }
+        model.addAttribute( "tp",tpService.selectById(id));
         return "/test_plan/modify";
     }
 

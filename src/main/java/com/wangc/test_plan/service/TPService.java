@@ -15,34 +15,39 @@ import static java.lang.Math.sqrt;
 
 @Service
 public class TPService {
-    
+
     @Autowired
     TPMapper tpMapper;
 
 //    @Autowired
 //    TestPlanBean tp;
-    
-    public void insert(TestPlanBean tp){
+
+    public void insert(TestPlanBean tp) {
         tpMapper.insert(tp);
     }
-    
-    public List<TestPlanBean> select(TestPlanBean tp){
+
+    public List<TestPlanBean> select(TestPlanBean tp) {
         return tpMapper.select(tp);
     }
-    
+
     public List<TestPlanBean> selectAll() {
         TestPlanBean tp = new TestPlanBean();
         return tpMapper.select(tp);
     }
 
-    public List<TestPlanBean> selectById(String id){
+    public TestPlanBean selectById(String id) {
         TestPlanBean tp = new TestPlanBean();
         tp.setId(id);
-        return tpMapper.select(tp);
+        List<TestPlanBean> list = tpMapper.select(tp);
+        if (null != list && !list.isEmpty()) {
+            return list.get(0);
+        } else {
+            return null;
+        }
     }
 
-    public void update(TestPlanBean tp){
+    public void update(TestPlanBean tp) {
         tpMapper.update(tp);
     }
-    
+
 }
