@@ -1,5 +1,9 @@
 package com.wangc.comm;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by wangchao on 2017/3/10.
  */
@@ -12,20 +16,50 @@ public class StringUtils {
         return String.format("%0"+n+"d", d);
     }
     
-    //是否存在当前月份的目录，如果不存则创建
-    public static void isHasMonthDir(){
-        
-        
-        
+    /**
+     * @param root 创建目录的父路径
+     * @return 当前时间的文件夹路径,结果无斜杠。返回的结果应该是：/2017/03
+     */
+    public static String  creAndGetDir(String root){
+        String path = new StringBuilder("")
+                .append(File.separator)
+                .append(getDate("yyyy"))
+                .append(File.separator)
+                .append(getDate("MM"))
+                .toString();
+        File file = new File(root+path);
+        file.mkdirs();
+        return path;
     }
-    
-    //判断是否存在目录d，如果不存在则创建
-    public static void isHasDir(String d){
-        
+
+    /**
+     * @return 返回 20170313 这样格式的字符串
+     */
+    public static String getDate(){
+        return getDate("yyyyMMdd");
+    }
+
+    /**
+     * @param format yyyy MM dd HH hh mm ss
+     * @return 返回对应格式的字符串
+     */
+    public static String getDate(String format){
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        return sdf.format(new Date());
     }
     
     public static void main(String[] args){
         System.out.println( dd(1,9) );
+        System.out.println(getDate("yyyyMMddHHmmssSSS"));
+        System.out.println(getDate("yyyyMMddHHmmssSSS"));
+        
+        
+        System.out.println( creAndGetDir("z:/") );
+        
+        
+        System.out.println( Math.random()*100000 );
+        
+        
     }
     
 }

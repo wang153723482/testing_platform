@@ -10,6 +10,7 @@ public class RunPlanBean {
     private String rampUp;
     private String tId;
     private TestPlanBean testPlanBean;
+    private String jmxPath;
 
     public String getId() {
         return id;
@@ -62,7 +63,15 @@ public class RunPlanBean {
             this.testPlanBean = testPlanBean;
         }
     }
-    
+
+    public String getJmxPath() {
+        return jmxPath;
+    }
+
+    public void setJmxPath(String jmxPath) {
+        this.jmxPath = jmxPath;
+    }
+
     //设置默认的启动频率，默认是每秒启动100个用户 
     // TODO: wangc@2017/3/13  参数化
     public void setDefaultRampUp(){
@@ -80,6 +89,7 @@ public class RunPlanBean {
         sb.append(", rampUp='").append(rampUp).append('\'');
         sb.append(", tId='").append(tId).append('\'');
         sb.append(", testPlanBean=").append(testPlanBean);
+        sb.append(", jmxPath=").append(jmxPath);
         sb.append('}');
         return sb.toString();
     }

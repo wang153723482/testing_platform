@@ -1,6 +1,6 @@
 package com.wangc.test_plan.controler;
 
-import com.wangc.comm.GenerateJmx;
+import com.wangc.test_plan.jmeter.GenerateJmx;
 import com.wangc.test_plan.bean.RunPlanBean;
 import com.wangc.test_plan.service.RPService;
 import com.wangc.test_plan.service.TPService;
@@ -24,7 +24,7 @@ public class RPController {
     @Autowired
     TPService tpService;
 
-    @Value("${tp.resultJmxPath}")
+    @Value("${tp.jmeter.jmx.path}")
     String a;
     
     @RequestMapping("add")
@@ -37,6 +37,8 @@ public class RPController {
         System.out.println(rpb);
         
         rpService.insert(rpb);
+        
+        
         return "redirect:/tp/list";
     }
     
