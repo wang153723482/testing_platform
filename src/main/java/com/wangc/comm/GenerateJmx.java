@@ -43,8 +43,7 @@ public class GenerateJmx {
             TestPlanBean tpb = rpb.getTestPlanBean(); // TODO: wangc@2017/3/13  不够优雅，改成解析成map，直接binding map 
             if(null!=tpb){
                 System.out.println("===3===");
-                System.out.println(tpb.getServerName());
-                t.binding("v_server_name",tpb.getServerName());
+                t.binding("v_server_name",tpb.getServerNameIp());
                 t.binding("v_port",tpb.getPortNum());
                 t.binding("v_prol",tpb.getProtocol());
                 t.binding("v_path",tpb.getPath());
@@ -55,8 +54,6 @@ public class GenerateJmx {
                 t.binding("v_path","444");
             }
             
-            String str = t.render();
-
             // TODO: wangc@2017/3/13  改成更优雅的存放目录结构 
             // TODO: wangc@2017/3/13  改成自动判断目标目录是否存在 
             String path = "ss"+System.currentTimeMillis()+".jmx";

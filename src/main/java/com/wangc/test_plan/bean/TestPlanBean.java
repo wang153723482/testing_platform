@@ -19,12 +19,13 @@ public class TestPlanBean {
     private String generater;
     @Value("${tp.protocol}")
      String protocol;
-    private String serverName;
+    private String serverNameIp;
     @Value("${tp.portNum}")
     private String portNum;
     
     private String path;
-    
+
+
     public String getId() {
         return id;
     }
@@ -73,12 +74,12 @@ public class TestPlanBean {
         this.protocol = protocol;
     }
 
-    public String getServerName() {
-        return serverName;
+    public String getServerNameIp() {
+        return serverNameIp;
     }
 
-    public void setServerName(String serverName) {
-        this.serverName = serverName;
+    public void setServerNameIp(String serverNameIp) {
+        this.serverNameIp = serverNameIp;
     }
 
     public String getPortNum() {
@@ -106,7 +107,7 @@ public class TestPlanBean {
         sb.append(", description='").append(description).append('\'');
         sb.append(", generater='").append(generater).append('\'');
         sb.append(", protocol='").append(protocol).append('\'');
-        sb.append(", serverName='").append(serverName).append('\'');
+        sb.append(", serverNameIp='").append(serverNameIp).append('\'');
         sb.append(", portNum='").append(portNum).append('\'');
         sb.append(", path='").append(path).append('\'');
         sb.append('}');

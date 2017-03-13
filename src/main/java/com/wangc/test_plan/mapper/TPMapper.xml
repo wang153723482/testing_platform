@@ -8,17 +8,21 @@
         <result property="url" column="url"></result>
         <result property="description" column="description"></result>
         <result property="generater" column="generater"></result>
+        <result property="protocol" column="protocol"></result>
+        <result property="serverNameIp" column="server_name_ip"></result>
+        <result property="portNum" column="port_num"></result>
+        <result property="path" column="path"></result>
     </resultMap>
 
 
     <insert id="insert" parameterType="com.wangc.test_plan.bean.TestPlanBean">
-        insert into test_plan(tp_name,url,description,generater) 
-        values(#{tpName},#{url},#{description},#{generater})
+        insert into test_plan(tp_name,url,description,generater,protocol,server_name_ip,port_num,path) 
+        values(#{tpName},#{url},#{description},#{generater},#{protocol},#{serverNameIp},#{portNum},#{path})
     </insert>
 
     <select id="select" parameterType="com.wangc.test_plan.bean.TestPlanBean"
     resultMap="testPlanBean">
-        select id,tp_name,url,description,generater
+        select id,tp_name,url,description,generater,protocol,server_name_ip,port_num,path
         from test_plan
         <where>
             <if test="null!=id">
@@ -35,6 +39,18 @@
             </if>
             <if test="null!=generater">
                 and generater=#{generater}
+            </if>
+            <if test="null!=protocol">
+                and protocol=#{protocol}
+            </if>
+            <if test="null!=serverNameIp">
+                and server_name_ip=#{serverNameIp}
+            </if>
+            <if test="null!=portNum">
+                and port_num=#{portNum}
+            </if>
+            <if test="null!=path">
+                and path=#{path}
             </if>
         </where> 
     </select>
