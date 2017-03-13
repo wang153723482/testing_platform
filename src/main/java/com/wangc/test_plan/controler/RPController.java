@@ -29,7 +29,7 @@ public class RPController {
     
     @RequestMapping("add")
     public String add(Model model, @ModelAttribute RunPlanBean rpb){
-        rpb.setDefaultDuration();
+        rpb.setDefaultRampUp();
 
         rpb.setTestPlanBean( tpService.selectById(rpb.gettId()) );
         GenerateJmx.generate(rpb);

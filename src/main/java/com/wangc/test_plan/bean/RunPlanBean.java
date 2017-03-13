@@ -63,12 +63,11 @@ public class RunPlanBean {
         }
     }
     
-    
-    //设置默认的duration，默认是每秒启动100个用户 
-    // TODO: wangc@2017/3/13  参数化 
-    public void setDefaultDuration(){
+    //设置默认的启动频率，默认是每秒启动100个用户 
+    // TODO: wangc@2017/3/13  参数化
+    public void setDefaultRampUp(){
         int d = Integer.valueOf(this.usersNum)/100;
-        this.duration = String.valueOf(0==d?1:d);
+        this.rampUp = String.valueOf(0==d?1:d);
     }
 
 
