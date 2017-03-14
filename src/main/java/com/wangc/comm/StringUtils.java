@@ -27,9 +27,10 @@ public class StringUtils {
                 .append(File.separator)
                 .append(getDate("MM"))
                 .toString();
-        File file = new File(root+path);
+        String fullPath = root+path;
+        File file = new File(fullPath);
         file.mkdirs();
-        return path;
+        return fullPath;
     }
 
     /**

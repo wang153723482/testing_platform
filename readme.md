@@ -28,7 +28,11 @@
         // TODO: wangc@2016/12/28  运行jmeter脚本 
 
         // TODO: wangc@2016/12/28  实时显示测试结果（解析并显示jtl文件） 
+                简单按行显示x.log文件中的关键内容   wangc@2017/03/14
 
         // TODO: wangc@2016/12/28  生成html报告 
 
         // TODO: wangc@2016/12/28  归档（jmeter脚本、测试数据、jtl测试结果、html报告） 
+
+        // TODO: wangc@2017/03/14  选择一个或多个远程机器来执行jmx
+        
