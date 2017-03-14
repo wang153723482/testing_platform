@@ -13,11 +13,6 @@
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
         <collectionProp name="Arguments.arguments">
-          <elementProp name="duration" elementType="Argument">
-            <stringProp name="Argument.name">duration</stringProp>
-            <stringProp name="Argument.value">#{v_duration}</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
           <elementProp name="users_num" elementType="Argument">
             <stringProp name="Argument.name">users_num</stringProp>
             <stringProp name="Argument.value">#{v_users_num}</stringProp>
