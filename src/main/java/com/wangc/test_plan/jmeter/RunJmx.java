@@ -1,6 +1,10 @@
 package com.wangc.test_plan.jmeter;
 
+import com.wangc.comm.Param;
 import com.wangc.comm.StringUtils;
+import com.wangc.test_plan.bean.RunPlanBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
@@ -10,21 +14,16 @@ import java.io.File;
  */
 public class RunJmx {
 
-    // TODO: wangc@2017/3/14  读取配置 tp.jmeter.jtl.path
-    private static String JTL_PATH = File.separator + "jmeter" + File.separator + "jtl";
-    private static String LOG_PATH = File.separator + "jmeter" + File.separator + "log";
-    private static String JTL_SUFFIX = ".jtl";
-    private static String LOG_SUFFIX = ".log";
-    private static String SEPARATOR_MY = "_";
-    private static String USER_DIR = System.getProperty("user.dir");
     private static String FORMAT_1 = "ddHHmmssSSS";
-    private static String JMETER_RUN_WIN = "cmd /c jmeter -n -t ${jmx} -l ${jtl} -j ${log}";
+    private static String JMETER_RUN_WIN = "cmd /c jmeter -n -t ${jmx} -l ${jtl} -j ${log} -e -o ${html}";
 
+    private static final Logger logger = LoggerFactory.getLogger(RunJmx.class);
 
-    public static void run(String jmxPath) {
+    public static void run(RunPlanBean rpb) {
         Runtime runtime = Runtime.getRuntime();
         try {
-            runtime.exec(getCommandStr(jmxPath));
+            // TODO: wangc@2017/3/14  执行exec方法改成异步 
+            runtime.exec(getCommandStr(rpb));
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error!");
@@ -32,24 +31,39 @@ public class RunJmx {
 
     }
 
-    private static String getCommandStr(String jmxPath) {
+    private static String getCommandStr(RunPlanBean rpb) {
+        String jmxPath = rpb.getJmxPath();
         String jmxName = getName(jmxPath);
-        String jtlPath = new StringBuilder(StringUtils.creAndGetDir(USER_DIR + JTL_PATH))
+        String jtlPath = new StringBuilder(StringUtils.creAndGetDir(Param.USER_DIR + Param.JTL_PATH))
                 .append(File.separator)
                 .append(jmxName)
-                .append(SEPARATOR_MY)
+                .append(Param.SEPARATOR_MY)
                 .append(StringUtils.getDate(FORMAT_1))
-                .append(JTL_SUFFIX)
+                .append(Param.JTL_SUFFIX)
                 .toString();
-        String logPaht = new StringBuilder(StringUtils.creAndGetDir(USER_DIR + LOG_PATH))
+        String logPath = new StringBuilder(StringUtils.creAndGetDir(Param.USER_DIR + Param.LOG_PATH))
                 .append(File.separator)
                 .append(jmxName)
-                .append(SEPARATOR_MY)
+                .append(Param.SEPARATOR_MY)
                 .append(StringUtils.getDate(FORMAT_1))
-                .append(LOG_SUFFIX)
+                .append(Param.LOG_SUFFIX)
                 .toString();
-        // TODO: wangc@2017/3/14  可能需要判断OS来执行不同的命令 
-        return JMETER_RUN_WIN.replace("${jmx}", jmxPath).replace("${jtl}", jtlPath).replace("${log}", logPaht);
+        String htmlPath = new StringBuilder(StringUtils.creAndGetDir(Param.USER_DIR + Param.HTML_PATH))
+                .append(File.separator)
+                .append(jmxName)
+                .append(Param.SEPARATOR_MY)
+                .append(StringUtils.getDate(FORMAT_1))
+                .toString();
+        rpb.setJtlPath(jtlPath);
+        rpb.setLogPath(logPath);
+        rpb.setHtmlPath(htmlPath);
+        // TODO: wangc@2017/3/14  可能需要判断OS来执行不同的命令
+        String command = JMETER_RUN_WIN.replace("${jmx}", jmxPath)
+                .replace("${jtl}", jtlPath)
+                .replace("${log}", logPath)
+                .replace("${html}", htmlPath);
+        logger.info(command);
+        return command;
     }
 
     private static String getName(String jmxPath) {
@@ -57,7 +71,4 @@ public class RunJmx {
         return file.getName().split("\\.")[0];
     }
 
-    public static void main(String[] args) {
-        System.out.println(getCommandStr("z://a.jmx"));
-    }
 }

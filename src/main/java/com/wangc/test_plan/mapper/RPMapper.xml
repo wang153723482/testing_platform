@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangc.test_plan.mapper.RPMapper">
+
+    <resultMap id="BaseResultMap" type="com.wangc.test_plan.bean.RunPlanBean" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="tp_id" property="tpId" jdbcType="INTEGER" />
+        <result column="duration" property="duration" jdbcType="INTEGER" />
+        <result column="users_num" property="usersNum" jdbcType="INTEGER" />
+        <result column="ramp_up" property="rampUp" jdbcType="INTEGER" />
+        <result column="jmx_path" property="jmxPath" jdbcType="VARCHAR" />
+        <result column="jtl_path" property="jtlPath" jdbcType="VARCHAR" />
+        <result column="log_path" property="logPath" jdbcType="VARCHAR" />
+        <result column="html_path" property="htmlPath" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="DATE" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, tp_id, duration, users_num, ramp_up, jmx_path, jtl_path, log_path, html_path,
+        create_time
+    </sql>
+    
+    
+    <select id="select" parameterType="com.wangc.test_plan.bean.RunPlanBean" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from run_plan
+        <where>
+            <if test="id != null" >
+                and id=#{id}
+            </if>
+            <if test="tpId != null" >
+                and tp_id=#{tpId}
+            </if>
+        </where>
+    </select>
+    
+    
+    
+    
+    
+    
+    
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from run_plan
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from run_plan
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.wangc.test_plan.bean.RunPlanBean" >
+        insert into run_plan (id, tp_id, duration,
+        users_num, ramp_up, jmx_path,
+        jtl_path, log_path, html_path,
+        create_time)
+        values (#{id,jdbcType=INTEGER}, #{tpId,jdbcType=INTEGER}, #{duration,jdbcType=INTEGER},
+        #{usersNum,jdbcType=INTEGER}, #{rampUp,jdbcType=INTEGER}, #{jmxPath,jdbcType=VARCHAR},
+        #{jtlPath,jdbcType=VARCHAR}, #{logPath,jdbcType=VARCHAR}, #{htmlPath,jdbcType=VARCHAR},
+        #{createTime,jdbcType=DATE})
+    </insert>
+    <insert id="insertSelective" parameterType="com.wangc.test_plan.bean.RunPlanBean" >
+        insert into run_plan
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="tpId != null" >
+                tp_id,
+            </if>
+            <if test="duration != null" >
+                duration,
+            </if>
+            <if test="usersNum != null" >
+                users_num,
+            </if>
+            <if test="rampUp != null" >
+                ramp_up,
+            </if>
+            <if test="jmxPath != null" >
+                jmx_path,
+            </if>
+            <if test="jtlPath != null" >
+                jtl_path,
+            </if>
+            <if test="logPath != null" >
+                log_path,
+            </if>
+            <if test="htmlPath != null" >
+                html_path,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="tpId != null" >
+                #{tpId,jdbcType=INTEGER},
+            </if>
+            <if test="duration != null" >
+                #{duration,jdbcType=INTEGER},
+            </if>
+            <if test="usersNum != null" >
+                #{usersNum,jdbcType=INTEGER},
+            </if>
+            <if test="rampUp != null" >
+                #{rampUp,jdbcType=INTEGER},
+            </if>
+            <if test="jmxPath != null" >
+                #{jmxPath,jdbcType=VARCHAR},
+            </if>
+            <if test="jtlPath != null" >
+                #{jtlPath,jdbcType=VARCHAR},
+            </if>
+            <if test="logPath != null" >
+                #{logPath,jdbcType=VARCHAR},
+            </if>
+            <if test="htmlPath != null" >
+                #{htmlPath,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wangc.test_plan.bean.RunPlanBean" >
+        update run_plan
+        <set >
+            <if test="tpId != null" >
+                tp_id = #{tpId,jdbcType=INTEGER},
+            </if>
+            <if test="duration != null" >
+                duration = #{duration,jdbcType=INTEGER},
+            </if>
+            <if test="usersNum != null" >
+                users_num = #{usersNum,jdbcType=INTEGER},
+            </if>
+            <if test="rampUp != null" >
+                ramp_up = #{rampUp,jdbcType=INTEGER},
+            </if>
+            <if test="jmxPath != null" >
+                jmx_path = #{jmxPath,jdbcType=VARCHAR},
+            </if>
+            <if test="jtlPath != null" >
+                jtl_path = #{jtlPath,jdbcType=VARCHAR},
+            </if>
+            <if test="logPath != null" >
+                log_path = #{logPath,jdbcType=VARCHAR},
+            </if>
+            <if test="htmlPath != null" >
+                html_path = #{htmlPath,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=DATE},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wangc.test_plan.bean.RunPlanBean" >
+        update run_plan
+        set tp_id = #{tpId,jdbcType=INTEGER},
+        duration = #{duration,jdbcType=INTEGER},
+        users_num = #{usersNum,jdbcType=INTEGER},
+        ramp_up = #{rampUp,jdbcType=INTEGER},
+        jmx_path = #{jmxPath,jdbcType=VARCHAR},
+        jtl_path = #{jtlPath,jdbcType=VARCHAR},
+        log_path = #{logPath,jdbcType=VARCHAR},
+        html_path = #{htmlPath,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=DATE}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+</mapper>

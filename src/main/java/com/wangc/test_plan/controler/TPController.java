@@ -68,6 +68,11 @@ public class TPController {
         System.out.println("====================================ok");
         return "redirect:/tp/list";
     }
+
+    @RequestMapping(value = "/xxx",method = RequestMethod.GET)
+    public String mo(Model model,@ModelAttribute TestPlanBean tp){
+        return "html:<h1>jello</h1>";
+    }
     
     
     

@@ -34,31 +34,21 @@
     <script th:src="@{/js/jquery-1.12.3.min.js}"></script>
     <script th:src="@{/layer/layer.js}"></script>
     <script>
-        function xxx(o){
-            
-            
-            var o_id = $(o).parent().find("[name='id']");
-            console.log(o_id.val());
-            $("#tId").attr('value',o_id.val());
-            console.log($("#tId").val());
-            console.log($("#run_plan").html());
+        $(document).ready(function(){
+            $("a[name='a_exc']").click(function () {
+                var o_id = $(this).parent().find("[name='id']");
+                $("#tpId").attr('value',o_id.val());
 
-            //页面层-自定义
-            layer.open({
-                type: 1,
-                skin: 'layui-layer-rim', //加上边框
-                area: ['420px', '240px'], //宽高
-                content: $("#run_plan").html()
+                //页面层-自定义
+                layer.open({
+                    type: 1,
+                    skin: 'layui-layer-rim', //加上边框
+                    area: ['420px', '240px'], //宽高
+                    content: $("#run_plan").html()
+                });
             });
-
-        }
-        $(document).ready(function () {
-
-
-//        $("a[name='a_exc']").click(function () {
-
-
         });
+        
     </script>
 
 </head>
@@ -82,23 +72,21 @@
         <td th:name="url" th:text="${tp.url}"></td>
         <td th:name="description" th:text="${tp.description}"></td>
         <td>
-            <input type="text" th:name="id" th:value="${tp.id}"/>
+            <input type="hidden" th:name="id" th:value="${tp.id}"/>
             <a th:href="@{/tp/modify(id=${tp.id})}" th:name="a_modify" th:value="${tp.id}">修改</a>
-            <a href="#" th:name="a_exc" onclick="xxx(this)">执行</a>
-            <a th:href="@{/tp_log/list}" th:name="a_loglist">查看日志</a>
+            <a href="#" th:name="a_exc" >执行</a>
+            <a th:href="@{/rp/list(tpId=${tp.id})}" th:name="a_loglist">查看日志</a>
         </td>                           
     </tr>
     </tbody>
 
 </table>
 
-<input type="button" id="mybu" name=""/>
-
 
 <div id="run_plan" style="display: none">
     <!--/*@thymesVar id="rp" type="com.wangc.test_plan.bean.RunPlanBean"*/-->
     <form th:action="@{/rp/add}" th:method="post" th:object="${rp}">
-        <input type="text" id="tId" name="tId" />
+        <input type="text" th:id="tpId" th:name="tpId" />
         <table>
             <tr>
                 <td>虚拟用户数</td>

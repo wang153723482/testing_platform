@@ -21,8 +21,7 @@ public class StringUtils {
      * @return 当前时间的文件夹路径,结果无斜杠。返回的结果应该是：/2017/03
      */
     public static String  creAndGetDir(String root){
-        String path = new StringBuilder("")
-                .append(File.separator)
+        String path = new StringBuilder(File.separator)
                 .append(getDate("yyyy"))
                 .append(File.separator)
                 .append(getDate("MM"))
@@ -30,7 +29,7 @@ public class StringUtils {
         String fullPath = root+path;
         File file = new File(fullPath);
         file.mkdirs();
-        return fullPath;
+        return path;
     }
 
     /**

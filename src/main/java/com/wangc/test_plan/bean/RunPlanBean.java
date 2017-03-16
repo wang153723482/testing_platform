@@ -6,11 +6,15 @@ package com.wangc.test_plan.bean;
 public class RunPlanBean {
     private String id;
     private String duration;
-    private String usersNum;
+    public String usersNum;
     private String rampUp;
-    private String tId;
+    private String tpId;
     private TestPlanBean testPlanBean;
     private String jmxPath;
+    private String jtlPath;
+    private String logPath;
+    private String htmlPath;
+    private String createTime;
 
     public String getId() {
         return id;
@@ -44,12 +48,12 @@ public class RunPlanBean {
         this.rampUp = rampUp;
     }
 
-    public String gettId() {
-        return tId;
+    public String getTpId() {
+        return tpId;
     }
 
-    public void settId(String tId) {
-        this.tId = tId;
+    public void setTpId(String tpId) {
+        this.tpId = tpId;
     }
 
     public TestPlanBean getTestPlanBean() {
@@ -79,6 +83,37 @@ public class RunPlanBean {
         this.rampUp = String.valueOf(0==d?1:d);
     }
 
+    public String getJtlPath() {
+        return jtlPath;
+    }
+
+    public void setJtlPath(String jtlPath) {
+        this.jtlPath = jtlPath;
+    }
+
+    public String getLogPath() {
+        return logPath;
+    }
+
+    public void setLogPath(String logPath) {
+        this.logPath = logPath;
+    }
+
+    public String getHtmlPath() {
+        return htmlPath;
+    }
+
+    public void setHtmlPath(String htmlPath) {
+        this.htmlPath = htmlPath;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
 
     @Override
     public String toString() {
@@ -87,9 +122,13 @@ public class RunPlanBean {
         sb.append(", duration='").append(duration).append('\'');
         sb.append(", usersNum='").append(usersNum).append('\'');
         sb.append(", rampUp='").append(rampUp).append('\'');
-        sb.append(", tId='").append(tId).append('\'');
+        sb.append(", tpId='").append(tpId).append('\'');
         sb.append(", testPlanBean=").append(testPlanBean);
-        sb.append(", jmxPath=").append(jmxPath);
+        sb.append(", jmxPath='").append(jmxPath).append('\'');
+        sb.append(", jtlPath='").append(jtlPath).append('\'');
+        sb.append(", logPath='").append(logPath).append('\'');
+        sb.append(", htmlPath='").append(htmlPath).append('\'');
+        sb.append(", createTime='").append(createTime).append('\'');
         sb.append('}');
         return sb.toString();
     }
