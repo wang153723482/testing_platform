@@ -19,7 +19,7 @@ public class StringUtils {
     /**
      * @param root 创建目录的父路径
      * @return 当前时间的文件夹路径,结果无斜杠。返回的结果应该是：/2017/03
-     * 涉及的3个路径：1.项目路径 2.配置中的类别路径 3.临时生成的文件路径
+     * 涉及的3个路径：1.项目路径(获取) 2.配置中的类别路径(配置) 3.临时生成的文件路径(动态)
      * 用到的地方：1.生成jmx 2.运行jmeter时，生成jtl、log、html的路径 
      */
     public static String  creAndGetDir(String root){
