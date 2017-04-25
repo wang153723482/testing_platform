@@ -33,6 +33,20 @@ public class StringUtils {
         file.mkdirs();
         return path;
     }
+    
+    /*如不存在则创建目录*/
+    public static boolean creDir(String path){
+        boolean flag = false;
+        try{
+            File file = new File(path);
+            file.mkdirs();
+            flag = file.exists();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        
+        return flag;
+    }
 
     /**
      * @return 返回 20170313 这样格式的字符串
@@ -55,11 +69,11 @@ public class StringUtils {
         System.out.println(getDate("yyyyMMddHHmmssSSS"));
         System.out.println(getDate("yyyyMMddHHmmssSSS"));
         
-        
         System.out.println( creAndGetDir("z:/") );
         
-        
         System.out.println( Math.random()*100000 );
+        
+        System.out.println( creDir("d://axx//xx/xx") );
         
         
     }

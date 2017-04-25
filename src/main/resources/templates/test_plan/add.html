@@ -3,6 +3,26 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>TP_LIST_ADD</title>
+    <style th:href="@{/layer/skin/default/layer.css}"></style>
+    <script th:src="@{/js/jquery-1.12.3.min.js}"></script>
+    <script th:src="@{/layer/layer.js}"></script>
+    <script language="javascript">
+        $(document).ready(function(){
+            $("a[name='a_exc']").click(function () {
+                var o_id = $(this).parent().find("[name='id']");
+                $("#tpId").attr('value',o_id.val());
+
+                //页面层-自定义
+                layer.open({
+                    type: 1,
+                    skin: 'layui-layer-rim', //加上边框
+                    area: ['420px', '240px'], //宽高
+                    content: $("#run_plan").html()
+                });
+            });
+        });
+
+    </script>
 </head>
 <body>     
 <!--/*@thymesVar id="tp" type="com.wangc.test_plan.bean.TestPlanBean"*/-->
@@ -12,6 +32,13 @@
     <tr>
         <td >测试计划名称</td>
         <td ><input th:name="tpName" type="text" /></td>
+    </tr>
+    <tr >
+        <td ></td>
+        <td >
+            <input type="radio" th:id="inputType0" th:name="inputType" th:value="0" th:selected="true"/>手工录入
+            <input type="radio" th:id="inputType1" th:name="inputType" th:value="1"/>上传jmx
+        </td>
     </tr>
     <tr>
         <td >url</td>
@@ -24,6 +51,15 @@
     <tr>
         <td >测试数据生成类</td>
         <td ><input th:name="generater" th:id="generater" type="text" /></td>
+    </tr>
+    <tr >
+        <td >选择文件</td>
+        <td >
+            <form method="POST" enctype="multipart/form-data" action="/upload">
+                <p>文件：<input type="file" name="file" /></p>
+                <p><input type="submit" value="上传" /></p>
+            </form>
+        </td>
     </tr>
     <tr>
         <td></td>

@@ -15,6 +15,10 @@ public class Param {
     public static String LOG_SUFFIX = ".log";
     public static String SEPARATOR_MY = "_";
     public static String USER_DIR = System.getProperty("user.dir");
+    public static String UPLOAD_DIR= "upload";
+    public static String UPLOAD_JMX_PATH = File.separator+UPLOAD_DIR+File.separator+"jmx";
+    
+    
 
 
 }
