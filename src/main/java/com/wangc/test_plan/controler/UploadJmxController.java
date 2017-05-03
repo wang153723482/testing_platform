@@ -41,6 +41,8 @@ public class UploadJmxController {
         String msg ="";
         String filePath = Param.USER_DIR+Param.UPLOAD_JMX_PATH;
         boolean creDirFlag = StringUtils.creDir(filePath);
+        String tmpFileName = "tp_"+StringUtils.getDate("yyyyMMddHHmmss");
+        String fileAllPath = filePath+File.separator+tmpFileName+file.getOriginalFilename(); //完整路径
         if(!creDirFlag){
             logger.error("cre dir failure");
             return "";
@@ -48,13 +50,16 @@ public class UploadJmxController {
             try {
                 BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(
-                                new File(filePath+File.separator+file.getOriginalFilename())));
+                                new File( fileAllPath )));
                 out.write(file.getBytes());
                 out.flush();
                 out.close();
 
                 msg = SUCCESS; 
                 logger.info(SUCCESS);
+                
+                /// 解析 脚本，获取参数，传递给下一个页面
+                
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 msg = FAILURE_NOT_FOUND;
