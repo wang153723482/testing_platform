@@ -74,7 +74,8 @@ public class UploadJmxController {
             logger.error( FAILURE_FILE_EMPTY );
         }
         model.addAttribute("msg",msg);
-        return "/test_plan/upload";
+//        return "/test_plan/upload";
+        return "success";
     }
     
     

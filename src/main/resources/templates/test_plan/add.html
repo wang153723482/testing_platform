@@ -20,6 +20,21 @@
                     content: $("#run_plan").html()
                 });
             });
+            
+            // uploadFileDiv   handInputDiv     inputType
+            //todo 应该根据radio的选中状态，而不是根据click来判断
+            $("input[name='inputType']").bind('click',function(){
+                var this_val = $(this).val();
+                var handInputDiv = $("#handInputDiv");
+                var uploadFileDiv = $("#uploadFileDiv");
+                if( '0'===this_val ){
+                    handInputDiv.show();
+                    uploadFileDiv.hide();
+                }else if( '1'===this_val ){
+                    handInputDiv.hide();
+                    uploadFileDiv.show();
+                }
+            });
         });
 
     </script>
@@ -40,25 +55,42 @@
             <input type="radio" th:id="inputType1" th:name="inputType" th:value="1"/>上传jmx
         </td>
     </tr>
-    <tr>
-        <td >url</td>
-        <td ><input th:name="url" type="text" /></td>
-    </tr>
-    <tr>
-        <td >测试描述</td>
-        <td ><input th:name="description" type="text" /></td>
-    </tr>
-    <tr>
-        <td >测试数据生成类</td>
-        <td ><input th:name="generater" th:id="generater" type="text" /></td>
+    <tr >
+        <td colspan="2">
+            <div id="handInputDiv">
+                <table>
+                    <tr>
+                        <td >url</td>
+                        <td ><input th:name="url" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td >测试描述</td>
+                        <td ><input th:name="description" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td >测试数据生成类</td>
+                        <td ><input th:name="generater" th:id="generater" type="text" /></td>
+                    </tr>
+                </table>
+            </div>
+        </td>
     </tr>
     <tr >
-        <td >选择文件</td>
-        <td >
-            <form method="POST" enctype="multipart/form-data" action="/upload">
-                <p>文件：<input type="file" name="file" /></p>
-                <p><input type="submit" value="上传" /></p>
-            </form>
+        <td colspan="2">
+            <div id="uploadFileDiv" style="display: none;">
+                <table>
+                    <tr >
+                        <td >选择文件</td>
+                        <td >
+                            <!--todo 不能嵌套form 使用ajax上传文件-->
+                            <form method="POST" enctype="multipart/form-data" th:action="@{/tp/upload}">
+                                <p>文件：<input type="file" name="file" /></p>
+                                <p><input type="submit" value="上传" /></p>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </td>
     </tr>
     <tr>
