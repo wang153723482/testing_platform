@@ -64,7 +64,27 @@ public class StringUtils {
         return sdf.format(new Date());
     }
     
+    /*
+    * 如果为null或者空字符串则返回false，否则返回true
+    * */
+    public static boolean isEmpty(String s) {
+        return null != s && !"".equals(s);
+    }
+    
+    /*
+    * 创建对应的路径，并返回文件在项目中的相对路径
+    * */
+    public static String getJmxSavePath(String fileName){
+        String filePath = Param.USER_DIR + Param.JMX_PATH;
+        StringUtils.creDir(filePath);
+        String tmpFileName = "tp_" + StringUtils.getDate("yyyyMMddHHmmss");
+        return  File.separator + tmpFileName + fileName; //完整路径
+    } 
+    
     public static void main(String[] args){
+        
+        System.out.println( getJmxSavePath("sss") );
+        
         System.out.println( dd(1,9) );
         System.out.println(getDate("yyyyMMddHHmmssSSS"));
         System.out.println(getDate("yyyyMMddHHmmssSSS"));

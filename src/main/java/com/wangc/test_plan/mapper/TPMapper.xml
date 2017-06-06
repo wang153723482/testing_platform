@@ -12,17 +12,18 @@
         <result property="serverNameIp" column="server_name_ip"></result>
         <result property="portNum" column="port_num"></result>
         <result property="path" column="path"></result>
+        <result property="jmxSavePath" column="jmx_save_path"></result>
     </resultMap>
 
 
     <insert id="insert" parameterType="com.wangc.test_plan.bean.TestPlanBean">
-        insert into test_plan(tp_name,url,description,generater,protocol,server_name_ip,port_num,path) 
-        values(#{tpName},#{url},#{description},#{generater},#{protocol},#{serverNameIp},#{portNum},#{path})
+        insert into test_plan(tp_name,url,description,generater,protocol,server_name_ip,port_num,path,jmx_save_path) 
+        values(#{tpName},#{url},#{description},#{generater},#{protocol},#{serverNameIp},#{portNum},#{path},#{jmxSavePath})
     </insert>
 
     <select id="select" parameterType="com.wangc.test_plan.bean.TestPlanBean"
     resultMap="testPlanBean">
-        select id,tp_name,url,description,generater,protocol,server_name_ip,port_num,path
+        select id,tp_name,url,description,generater,protocol,server_name_ip,port_num,path,jmx_save_path
         from test_plan
         <where>
             <if test="null!=id">

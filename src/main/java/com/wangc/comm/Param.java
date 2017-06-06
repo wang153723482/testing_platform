@@ -11,12 +11,13 @@ public class Param {
     public static String JTL_PATH = File.separator + "jmeter" + File.separator + "jtl";
     public static String LOG_PATH = File.separator + "jmeter" + File.separator + "log";
     public static String HTML_PATH = File.separator + "jmeter" + File.separator + "html";
+    public static String JMX_PATH = File.separator + "jmeter" + File.separator + "jmx";
     public static String JTL_SUFFIX = ".jtl";
     public static String LOG_SUFFIX = ".log";
     public static String SEPARATOR_MY = "_";
     public static String USER_DIR = System.getProperty("user.dir");
     public static String UPLOAD_DIR= "upload";
-    public static String UPLOAD_JMX_PATH = File.separator+UPLOAD_DIR+File.separator+"jmx";
+//    public static String UPLOAD_JMX_PATH = File.separator+UPLOAD_DIR+File.separator+"jmx";
     
     
 

@@ -24,6 +24,7 @@ public class TestPlanBean {
     private String portNum;
     
     private String path;
+    private String jmxSavePath;
 
 
     public String getId() {
@@ -98,6 +99,14 @@ public class TestPlanBean {
         this.path = path;
     }
 
+    public String getJmxSavePath() {
+        return jmxSavePath;
+    }
+
+    public void setJmxSavePath(String jmxSavePath) {
+        this.jmxSavePath = jmxSavePath;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("TestPlanBean{");
@@ -110,6 +119,7 @@ public class TestPlanBean {
         sb.append(", serverNameIp='").append(serverNameIp).append('\'');
         sb.append(", portNum='").append(portNum).append('\'');
         sb.append(", path='").append(path).append('\'');
+        sb.append(", jmxSavePath='").append(jmxSavePath).append('\'');
         sb.append('}');
         return sb.toString();
     }

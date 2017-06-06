@@ -8,18 +8,6 @@
     <script th:src="@{/layer/layer.js}"></script>
     <script language="javascript">
         $(document).ready(function(){
-            $("a[name='a_exc']").click(function () {
-                var o_id = $(this).parent().find("[name='id']");
-                $("#tpId").attr('value',o_id.val());
-
-                //页面层-自定义
-                layer.open({
-                    type: 1,
-                    skin: 'layui-layer-rim', //加上边框
-                    area: ['420px', '240px'], //宽高
-                    content: $("#run_plan").html()
-                });
-            });
             
             // uploadFileDiv   handInputDiv     inputType
             //todo 应该根据radio的选中状态，而不是根据click来判断
@@ -35,14 +23,17 @@
                     uploadFileDiv.show();
                 }
             });
+            
         });
+        
 
     </script>
 </head>
 <body>     
 <!--/*@thymesVar id="tp" type="com.wangc.test_plan.bean.TestPlanBean"*/-->
 
-<form th:action="@{/tp/add}" th:method="post" th:object="${tp}">
+<!--<form th:action="@{/tp/upload}" enctype="multipart/form-data" th:method="post" th:object="${tp}">-->
+<form th:action="@{/tp/upload}" enctype="multipart/form-data" th:method="post" >
 <table >
     <tr>
         <td >测试计划名称</td>
@@ -81,12 +72,9 @@
                 <table>
                     <tr >
                         <td >选择文件</td>
-                        <td >
-                            <!--todo 不能嵌套form 使用ajax上传文件-->
-                            <form method="POST" enctype="multipart/form-data" th:action="@{/tp/upload}">
-                                <p>文件：<input type="file" name="file" /></p>
-                                <p><input type="submit" value="上传" /></p>
-                            </form>
+                        <td >     
+                            <p>文件：<input type="file" name="file" /></p>
+                            <p><input type="button" id="button_upload" onclick="fire_ajax_submit()" value="上传" /></p>
                         </td>
                     </tr>
                 </table>
@@ -101,5 +89,7 @@
 </table>
 
 </form>
+
+
 </body>
 </html>

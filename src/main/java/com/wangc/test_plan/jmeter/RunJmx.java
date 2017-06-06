@@ -31,26 +31,30 @@ public class RunJmx {
 
     }
 
+    /* jtlPath/logPaht/htmlPath 都是基于项目的相对路径 */
     private static String getCommandStr(RunPlanBean rpb) {
-        String jmxPath = rpb.getJmxPath();
-        String jmxName = getName(jmxPath);
-        String jtlPath = new StringBuilder(StringUtils.creAndGetDir(Param.USER_DIR + Param.JTL_PATH))
+        String jmxPath = Param.USER_DIR + Param.JMX_PATH+rpb.getJmxPath();
+        // TODO: wangc@2017/6/6  路径混乱，jtl、log、html的路径，都是给机器看的，使用随机或uuid即可。 
+        String jtlPath = new StringBuilder(Param.USER_DIR + Param.JTL_PATH)
+                .append(StringUtils.creAndGetDir(Param.USER_DIR + Param.JTL_PATH))
                 .append(File.separator)
-                .append(jmxName)
+                .append(System.currentTimeMillis())
                 .append(Param.SEPARATOR_MY)
                 .append(StringUtils.getDate(FORMAT_1))
                 .append(Param.JTL_SUFFIX)
                 .toString();
-        String logPath = new StringBuilder(StringUtils.creAndGetDir(Param.USER_DIR + Param.LOG_PATH))
+        String logPath = new StringBuilder(Param.USER_DIR + Param.JTL_PATH)
+                .append(StringUtils.creAndGetDir(Param.USER_DIR + Param.LOG_PATH))
                 .append(File.separator)
-                .append(jmxName)
+                .append(System.currentTimeMillis())
                 .append(Param.SEPARATOR_MY)
                 .append(StringUtils.getDate(FORMAT_1))
                 .append(Param.LOG_SUFFIX)
                 .toString();
-        String htmlPath = new StringBuilder(StringUtils.creAndGetDir(Param.USER_DIR + Param.HTML_PATH))
+        String htmlPath = new StringBuilder(Param.USER_DIR + Param.JTL_PATH)
+                .append(StringUtils.creAndGetDir(Param.USER_DIR + Param.HTML_PATH))
                 .append(File.separator)
-                .append(jmxName)
+                .append(System.currentTimeMillis())
                 .append(Param.SEPARATOR_MY)
                 .append(StringUtils.getDate(FORMAT_1))
                 .toString();
