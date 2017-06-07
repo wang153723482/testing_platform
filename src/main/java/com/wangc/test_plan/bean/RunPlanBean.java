@@ -61,9 +61,9 @@ public class RunPlanBean {
     }
 
     public void setTestPlanBean(TestPlanBean testPlanBean) {
-        if(null==testPlanBean){
-            this.testPlanBean = new TestPlanBean(); 
-        }else {
+        if (null == testPlanBean) {
+            this.testPlanBean = new TestPlanBean();
+        } else {
             this.testPlanBean = testPlanBean;
         }
     }
@@ -78,9 +78,9 @@ public class RunPlanBean {
 
     //设置默认的启动频率，默认是每秒启动100个用户 
     // TODO: wangc@2017/3/13  参数化
-    public void setDefaultRampUp(){
-        int d = Integer.valueOf(this.usersNum)/100;
-        this.rampUp = String.valueOf(0==d?1:d);
+    public void setDefaultRampUp() {
+        int d = Integer.valueOf(this.usersNum) / 100;
+        this.rampUp = String.valueOf(0 == d ? 1 : d);
     }
 
     public String getJtlPath() {

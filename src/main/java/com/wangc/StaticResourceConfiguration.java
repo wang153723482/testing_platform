@@ -29,6 +29,9 @@ public class StaticResourceConfiguration extends WebMvcConfigurerAdapter {
         //linux:  file:///home/wangc/dir_name
         String reportResLocations = FILE_PREX+separator+ Param.USER_DIR+Param.HTML_PATH;
         //将所有的/report/请求至html报告的本地路径
+//        registry.addResourceHandler("/report/**").addResourceLocations(reportResLocations);
+
+//        reportResLocations = FILE_PREX+separator+ Param.USER_DIR+Param.HTML_PATH
         registry.addResourceHandler("/report/**").addResourceLocations(reportResLocations);
     }
 }

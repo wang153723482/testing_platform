@@ -89,6 +89,9 @@
         <input type="text" th:id="tpId" th:name="tpId" />
         <table>
             <tr>
+                <!--todo 如果jmx里读取到这个参数，则默认显示在这里，否则为空
+                    针对直接上传的jmx，可以读取到这个参数，如果通过平台创建的测试计划，默认为空。
+                -->
                 <td>虚拟用户数</td>
                 <td><input type="text" th:id="usersNum" th:name="usersNum"/></td>
             </tr>

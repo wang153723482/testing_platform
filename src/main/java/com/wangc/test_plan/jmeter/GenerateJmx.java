@@ -65,7 +65,7 @@ public class GenerateJmx {
             String jmxRoot = System.getProperty("user.dir")+JMX_PATH;//系统(项目)路径，结尾无斜杠
             //jmx在系统(项目)中的存在路径，斜杠开头，结尾无斜杠
             
-            String fullPath = jmxRoot+JMX_PATH+StringUtils.creAndGetDir(jmxRoot); //返回的应该是  c:/jmx/2017/03  ，并创建这个目录
+            String fullPath = jmxRoot+StringUtils.creAndGetDir(jmxRoot); //返回的应该是  c:/jmx/2017/03  ，并创建这个目录
             
             //文件名，斜杠开头
             String fileName = new StringBuilder(File.separator)

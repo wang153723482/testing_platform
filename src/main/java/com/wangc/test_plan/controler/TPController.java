@@ -49,7 +49,6 @@ public class TPController {
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public String add(Model model, TestPlanBean tp){
         tpService.insert(tp);
-        System.out.println(tp.getTpName());
 //        
 //        return "/test_plan/add";
         return "redirect:/tp/list?sName=qwe";

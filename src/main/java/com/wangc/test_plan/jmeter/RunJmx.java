@@ -33,17 +33,17 @@ public class RunJmx {
 
     /* jtlPath/logPaht/htmlPath 都是基于项目的相对路径 */
     private static String getCommandStr(RunPlanBean rpb) {
-        String jmxPath = Param.USER_DIR + Param.JMX_PATH+rpb.getJmxPath();
+        String jmxPath = Param.USER_DIR +rpb.getTestPlanBean().getJmxSavePath();
         // TODO: wangc@2017/6/6  路径混乱，jtl、log、html的路径，都是给机器看的，使用随机或uuid即可。 
-        String jtlPath = new StringBuilder(Param.USER_DIR + Param.JTL_PATH)
+        String jtlPath = new StringBuilder("")
                 .append(StringUtils.creAndGetDir(Param.USER_DIR + Param.JTL_PATH))
                 .append(File.separator)
                 .append(System.currentTimeMillis())
                 .append(Param.SEPARATOR_MY)
                 .append(StringUtils.getDate(FORMAT_1))
-                .append(Param.JTL_SUFFIX)
-                .toString();
-        String logPath = new StringBuilder(Param.USER_DIR + Param.JTL_PATH)
+                .append(Param.JTL_SUFFIX).toString();
+        
+        String logPath = new StringBuilder("")
                 .append(StringUtils.creAndGetDir(Param.USER_DIR + Param.LOG_PATH))
                 .append(File.separator)
                 .append(System.currentTimeMillis())
@@ -51,7 +51,8 @@ public class RunJmx {
                 .append(StringUtils.getDate(FORMAT_1))
                 .append(Param.LOG_SUFFIX)
                 .toString();
-        String htmlPath = new StringBuilder(Param.USER_DIR + Param.JTL_PATH)
+        
+        String htmlPath = new StringBuilder("")
                 .append(StringUtils.creAndGetDir(Param.USER_DIR + Param.HTML_PATH))
                 .append(File.separator)
                 .append(System.currentTimeMillis())
@@ -63,9 +64,9 @@ public class RunJmx {
         rpb.setHtmlPath(htmlPath);  // TODO: 2017/3/20 这里用相对路径，执行cmd命令时用绝对路径，需要修改 
         // TODO: wangc@2017/3/14  可能需要判断OS来执行不同的命令
         String command = JMETER_RUN_WIN.replace("${jmx}", jmxPath)
-                .replace("${jtl}", jtlPath)
-                .replace("${log}", logPath)
-                .replace("${html}", htmlPath);
+                .replace("${jtl}", Param.USER_DIR + Param.JTL_PATH+jtlPath)
+                .replace("${log}", Param.USER_DIR + Param.LOG_PATH+logPath)
+                .replace("${html}", Param.USER_DIR + Param.HTML_PATH+htmlPath);
         logger.info(command);
         return command;
     }
