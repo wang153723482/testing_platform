@@ -18,7 +18,11 @@ public class StaticResourceConfiguration extends WebMvcConfigurerAdapter {
     
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        super.addResourceHandlers(registry);
+        System.out.println("==================");
+        System.out.println("==================");
+        System.out.println("==================");
+        System.out.println("==================");
+        System.out.println("==================");
         // TODO: wangc@2017/3/15  这里可能需要根据OS不同配置不同的路径，win：file后有3个/，linux：file后有2个/，因为linux的目录本身就是/开头 
         
         String separator = "/";
@@ -32,6 +36,10 @@ public class StaticResourceConfiguration extends WebMvcConfigurerAdapter {
 //        registry.addResourceHandler("/report/**").addResourceLocations(reportResLocations);
 
 //        reportResLocations = FILE_PREX+separator+ Param.USER_DIR+Param.HTML_PATH
+        
+        reportResLocations = "file:///D:/workspace_HelloWorld/testing_platform/jmeter/html/";
         registry.addResourceHandler("/report/**").addResourceLocations(reportResLocations);
+                              //file:///D:/workspace_HelloWorld/testing_platform/jmeter/html
+        super.addResourceHandlers(registry);
     }
 }

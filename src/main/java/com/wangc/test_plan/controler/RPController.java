@@ -66,6 +66,7 @@ public class RPController {
     public String list(Model model, @RequestParam String tpId) {
         List<RunPlanBean> list = rpService.list(tpId);
         model.addAttribute("rp_list", list);
+        model.addAttribute("html_path",list.get(0).getHtmlPath());
         return "/run_plan/list";
     }
 

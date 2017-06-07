@@ -54,7 +54,7 @@
         <td th:name="users_num" th:text="${rp.usersNum}"></td>
         <td th:name="duration" th:text="${rp.duration}"></td>
         <td th:name="html_path" >
-            <a th:href="@{/report/rp.htmlPath}" th:text="${rp.htmlPath}"></a>
+            <a th:href="@{'/report'+${rp['htmlPath']}}" th:text="${rp['htmlPath']}"></a>
         </td>
     </tr>
     </tbody>
