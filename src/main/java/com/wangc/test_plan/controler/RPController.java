@@ -1,18 +1,24 @@
 package com.wangc.test_plan.controler;
 
+import com.wangc.comm.Param;
 import com.wangc.comm.StringUtils;
+import com.wangc.comm.UpdateJmx;
 import com.wangc.test_plan.bean.TestPlanBean;
 import com.wangc.test_plan.jmeter.GenerateJmx;
 import com.wangc.test_plan.bean.RunPlanBean;
 import com.wangc.test_plan.jmeter.RunJmx;
 import com.wangc.test_plan.service.RPService;
 import com.wangc.test_plan.service.TPService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.*;
 import java.util.List;
 
 /**
@@ -31,23 +37,31 @@ public class RPController {
     @Value("${tp.jmeter.jmx.path}")
     String a;
 
+    private static final Logger logger = LoggerFactory.getLogger(RPController.class);
+    private final String SUCCESS = "上传成功";
+    private final String FAILURE_NOT_FOUND = "上传失败(FileNotFoundException)";
+    private final String FAILURE_IO = "上传失败(IOException)";
+    private final String FAILURE_FILE_EMPTY = "上传失败(File is empty)";
+
 
     /*
     * 添加一个执行计划。
     * 先判断该执行计划中是否已经生成了jmx，如果生成则执行 runJmx() ，否则，先生成jmx，然后再 runJmx()
     * */
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute RunPlanBean rpb) {
+    public String add(Model model, @ModelAttribute RunPlanBean rpb,@RequestParam MultipartFile file) {
         rpb.setDefaultRampUp();
 
         System.out.println(rpb);
+        String dataFilePath = saveFile(file);
 
         TestPlanBean tpb = tpService.selectById(rpb.getTpId());
         rpb.setTestPlanBean(tpb);
         rpb.setJmxPath(tpb.getJmxSavePath());
+        rpb.setDataPath(dataFilePath);
 
         if (!StringUtils.isEmpty(tpb.getJmxSavePath())) {
-            GenerateJmx.generate(rpb);
+            GenerateJmx.generate(rpb);//平台创建
         }
         RunJmx.run(rpb);
 
@@ -69,5 +83,36 @@ public class RPController {
         model.addAttribute("html_path",list.get(0).getHtmlPath());
         return "/run_plan/list";
     }
+
+    public String saveFile(MultipartFile file) {
+        String typePath = Param.DATA_PATH;
+        String dir = StringUtils.creAndGetDir(Param.USER_DIR+typePath);//动态生成的路径 /yyyy/MM
+        String tmpFileName = StringUtils.getDate("yyyyMMddHHmmss");
+        String filePath = typePath+dir + File.separator + tmpFileName + file.getOriginalFilename();//相对路径 
+        String fileAllPath = Param.USER_DIR + filePath; //完整路径
+
+        if (!file.isEmpty()) {
+            try {
+                BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(
+                                new File(fileAllPath)));
+                out.write(file.getBytes());
+                out.flush();
+                out.close();
+                logger.info(SUCCESS);
+                return filePath;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                logger.error(FAILURE_NOT_FOUND);
+            } catch (IOException e) {
+                e.printStackTrace();
+                logger.error(FAILURE_IO);
+            }
+        } else {
+            logger.error(FAILURE_FILE_EMPTY);
+        }
+        return null;//todo 异常处理
+    }
+
 
 }

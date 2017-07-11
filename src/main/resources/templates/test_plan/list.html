@@ -85,7 +85,7 @@
 
 <div id="run_plan" style="display: none">
     <!--/*@thymesVar id="rp" type="com.wangc.test_plan.bean.RunPlanBean"*/-->
-    <form th:action="@{/rp/add}" th:method="post" th:object="${rp}">
+    <form th:action="@{/rp/add}" th:method="post" enctype="multipart/form-data" th:object="${rp}">
         <input type="text" th:id="tpId" th:name="tpId" />
         <table>
             <tr>
@@ -98,6 +98,12 @@
             <tr>
                 <td>持续时间</td>
                 <td><input type="text" th:id="duration" th:name="duration"/></td>
+            </tr>
+            <tr >
+                <td >上传测试数据</td>
+                <td >
+                    <input type="file" name="file"/>
+                </td>
             </tr>
             <tr>
                 <td></td>

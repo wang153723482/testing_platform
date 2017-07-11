@@ -15,6 +15,8 @@ public class RunPlanBean {
     private String logPath;
     private String htmlPath;
     private String createTime;
+    private String dataPath;
+    
 
     public String getId() {
         return id;
@@ -115,6 +117,14 @@ public class RunPlanBean {
         this.createTime = createTime;
     }
 
+    public String getDataPath() {
+        return dataPath;
+    }
+
+    public void setDataPath(String dataPath) {
+        this.dataPath = dataPath;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("RunPlanBean{");
@@ -129,6 +139,7 @@ public class RunPlanBean {
         sb.append(", logPath='").append(logPath).append('\'');
         sb.append(", htmlPath='").append(htmlPath).append('\'');
         sb.append(", createTime='").append(createTime).append('\'');
+        sb.append(", dataPath='").append(dataPath).append('\'');
         sb.append('}');
         return sb.toString();
     }

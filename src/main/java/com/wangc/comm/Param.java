@@ -12,6 +12,7 @@ public class Param {
     public static String LOG_PATH = File.separator + "jmeter" + File.separator + "log";
     public static String HTML_PATH = File.separator + "jmeter" + File.separator + "html";
     public static String JMX_PATH = File.separator + "jmeter" + File.separator + "jmx";
+    public static String DATA_PATH = File.separator + "jmeter" + File.separator + "data";
     public static String JTL_SUFFIX = ".jtl";
     public static String LOG_SUFFIX = ".log";
     public static String SEPARATOR_MY = "_";

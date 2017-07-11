@@ -63,6 +63,10 @@ public class RunJmx {
         rpb.setLogPath(logPath);
         rpb.setHtmlPath(htmlPath+File.separator+"index.html");  // TODO: 2017/3/20 这里用相对路径，执行cmd命令时用绝对路径，需要修改 
         // TODO: wangc@2017/3/14  可能需要判断OS来执行不同的命令
+        
+        StringBuilder otherCmdPara = new StringBuilder();
+        
+        
         String command = JMETER_RUN_WIN.replace("${jmx}", jmxPath)
                 .replace("${jtl}", Param.USER_DIR + Param.JTL_PATH+jtlPath)
                 .replace("${log}", Param.USER_DIR + Param.LOG_PATH+logPath)
