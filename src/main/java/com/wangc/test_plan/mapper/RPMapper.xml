@@ -69,13 +69,13 @@
             <if test="tpId != null" >
                 tp_id,
             </if>
-            <if test="duration != null" >
+            <if test="duration != null and ''!=duration" >
                 duration,
             </if>
-            <if test="usersNum != null" >
+            <if test="usersNum != null and usersNum!=''" >
                 users_num,
             </if>
-            <if test="rampUp != null" >
+            <if test="rampUp != null and rampUp!=''" >
                 ramp_up,
             </if>
             <if test="jmxPath != null" >
@@ -101,13 +101,13 @@
             <if test="tpId != null" >
                 #{tpId,jdbcType=INTEGER},
             </if>
-            <if test="duration != null" >
+            <if test="duration != null and ''!=duration"  >
                 #{duration,jdbcType=INTEGER},
             </if>
-            <if test="usersNum != null" >
+            <if test="usersNum != null and usersNum!=''" >
                 #{usersNum,jdbcType=INTEGER},
             </if>
-            <if test="rampUp != null" >
+            <if test="rampUp != null and rampUp!=''" >
                 #{rampUp,jdbcType=INTEGER},
             </if>
             <if test="jmxPath != null" >

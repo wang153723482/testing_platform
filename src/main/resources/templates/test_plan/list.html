@@ -87,6 +87,7 @@
     <!--/*@thymesVar id="rp" type="com.wangc.test_plan.bean.RunPlanBean"*/-->
     <form th:action="@{/rp/add}" th:method="post" enctype="multipart/form-data" th:object="${rp}">
         <input type="text" th:id="tpId" th:name="tpId" />
+        对于上传的jmx，可以直接执行
         <table>
             <tr>
                 <!--todo 如果jmx里读取到这个参数，则默认显示在这里，否则为空

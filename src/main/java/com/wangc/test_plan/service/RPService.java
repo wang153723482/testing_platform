@@ -20,7 +20,7 @@ public class RPService {
     
     public void insert(RunPlanBean rpb){
         // TODO: wangc@2017/3/13  插入数据库 
-        rpMapper.insert(rpb);
+        rpMapper.insertSelective(rpb);
     }
     
     public List<RunPlanBean> list(String tId){

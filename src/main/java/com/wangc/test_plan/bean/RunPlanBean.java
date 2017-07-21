@@ -6,7 +6,7 @@ package com.wangc.test_plan.bean;
 public class RunPlanBean {
     private String id;
     private String duration;
-    public String usersNum;
+    private String usersNum;
     private String rampUp;
     private String tpId;
     private TestPlanBean testPlanBean;

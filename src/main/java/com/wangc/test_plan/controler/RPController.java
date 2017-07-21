@@ -50,7 +50,7 @@ public class RPController {
     * */
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String add(Model model, @ModelAttribute RunPlanBean rpb,@RequestParam MultipartFile file) {
-        rpb.setDefaultRampUp();
+        
 
         System.out.println(rpb);
         String dataFilePath = saveFile(file);
@@ -61,6 +61,7 @@ public class RPController {
         rpb.setDataPath(dataFilePath);
 
         if (!StringUtils.isEmpty(tpb.getJmxSavePath())) {
+            rpb.setDefaultRampUp();
             GenerateJmx.generate(rpb);//平台创建
         }
         RunJmx.run(rpb);
