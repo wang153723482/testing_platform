@@ -75,7 +75,8 @@
             <input type="hidden" th:name="id" th:value="${tp.id}"/>
             <a th:href="@{/tp/modify(id=${tp.id})}" th:name="a_modify" th:value="${tp.id}">修改</a>
             <a href="#" th:name="a_exc" >执行</a>
-            <a th:href="@{/rp/list(tpId=${tp.id})}" th:name="a_loglist">查看日志</a>
+            <a th:href="@{/rp/report_list(tpId=${tp.id})}" th:name="a_report_list">报表</a>
+            <a th:href="@{/rp/runlog_list(tpId=${tp.id})}" th:name="a_runlog_list">运行日志</a>
         </td>                           
     </tr>
     </tbody>

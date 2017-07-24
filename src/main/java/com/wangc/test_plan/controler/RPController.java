@@ -68,7 +68,7 @@ public class RPController {
 
         rpService.insert(rpb);
 
-        return "redirect:/tp/list";
+        return "redirect:/tp/report_list";
     }
 
     /**
@@ -77,12 +77,26 @@ public class RPController {
      * @param tpId test_plan.id
      * @return
      */
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    public String list(Model model, @RequestParam String tpId) {
+    @RequestMapping(value = "report_list", method = RequestMethod.GET)
+    public String report_list(Model model, @RequestParam String tpId) {
         List<RunPlanBean> list = rpService.list(tpId);
         model.addAttribute("rp_list", list);
         model.addAttribute("html_path",list.get(0).getHtmlPath());
         return "/run_plan/list";
+    }
+    
+    /*
+    * 根据test_plan id 查询并显示当前正在执行的jmeter.log
+    * */
+    @RequestMapping(value = "runlog_list", method = RequestMethod.GET)
+    public String runlogList(Model model, @RequestParam String tpId) {
+        List<RunPlanBean> list = rpService.list(tpId);
+        model.addAttribute("rp_list", list);
+        model.addAttribute("html_path",list.get(0).getHtmlPath());
+        
+        model.addAttribute("run_log_txt",rpService.runlogList());
+        
+        return "/run_plan/run_log";
     }
 
     public String saveFile(MultipartFile file) {

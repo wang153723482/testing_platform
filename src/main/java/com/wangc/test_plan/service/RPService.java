@@ -30,4 +30,9 @@ public class RPService {
         return rpMapper.select(rpb);
     }
     
+    public String runlogList(){
+        //todo 读取日志文件，并返回
+        return null;
+    }
+    
 }
