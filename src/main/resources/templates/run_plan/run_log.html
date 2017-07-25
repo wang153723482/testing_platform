@@ -33,30 +33,59 @@
     <style th:href="@{/layer/skin/default/layer.css}"></style>
     <script th:src="@{/js/jquery-1.12.3.min.js}"></script>
     <script th:src="@{/layer/layer.js}"></script>
-
-
+    <script th:inline="javascript">
+//        alert( [[${log_result.logPath}]] ); //js中获取session中值
+        //定时执行 返回并重新赋值
+        var logPath;
+        var modifiedTime;
+        var content;
+        $(document).ready(function(){
+            logPath = $("#logPath");
+            modifiedTime = $("#modifiedTime");
+            content = $("#content");
+            setInterval("reflush()",5000);
+//            setInterval("showMsg()",5000);
+        });
+        
+        function reflush(){
+            location.reload();
+        }
+        
+        function showMsg(){
+            $.ajax({
+                url:'/rp/ajaxRunLog',
+                data:{logPath:logPath.val(),modifiedTime:modifiedTime.val()},
+                dataType:'text',
+                success:function(data){
+                    if( ''!==data ){
+                        content.text(data.replaceAll('##@','<br/>'));
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status+','+XMLHttpRequest.readyState+','+textStatus);
+                }
+            });
+        }
+    </script>
 </head>
 <body>
-
+       <!--/*@thymesVar id="log_result" type="com.wangc.test_plan.bean.LogResultBean"*/-->
+       <input th:type="hidden" id="logPath" name="logPath" th:value="${log_result.logPath}"/>
+       <input th:type="hidden" id="modifiedTime" name="modifiedTime" th:value="${log_result.modifiedTime}"/>
 <table th:id="customers">
     <thead>
     <tr>
-        <th>虚拟用户数量</th>
-        <th>持续时间</th>
-        <th>报告</th>
-        <!--<th>创建时间</th>-->
+        <th>执行日志</th>
     </tr>
     </thead>
-    <!--/*@thymesVar id="rp" type="com.wangc.test_plan.bean.RunPlanBean"*/-->
-    <!--/*@thymesVar id="rp_list" type="java.util.ArrayList"*/-->
-    <tbody th:each="rp:${rp_list}">
+    <tbody>
     <tr>
-        <td th:name="users_num" th:text="${rp.usersNum}"></td>
-        <td th:name="duration" th:text="${rp.duration}"></td>
-        <td th:name="html_path" >
-            <a th:href="@{'/report'+${rp['htmlPath']}}" th:text="${rp['htmlPath']}"></a>
+        <!--<td th:name="content" th:text="${log_result.content}"></td>-->
+        <td >
+            <span th:id="content" th:utext="${log_result.content.replace('##@','&lt;br/&gt;')}"></span>
         </td>
     </tr>
+
     </tbody>
 
 </table>

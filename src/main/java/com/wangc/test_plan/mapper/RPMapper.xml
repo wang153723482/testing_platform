@@ -31,6 +31,7 @@
                 and tp_id=#{tpId}
             </if>
         </where>
+        order by id desc
     </select>
     
     

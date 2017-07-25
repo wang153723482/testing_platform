@@ -36,8 +36,6 @@ public class TPController {
         List<TestPlanBean> list = tpService.select(null);
         model.addAttribute("tp_list",list);
 
-        
-//        
         return "/test_plan/list";
     }
     

@@ -2,7 +2,7 @@ package com.wangc.test_plan.controler;
 
 import com.wangc.comm.Param;
 import com.wangc.comm.StringUtils;
-import com.wangc.comm.UpdateJmx;
+import com.wangc.test_plan.bean.LogResultBean;
 import com.wangc.test_plan.bean.TestPlanBean;
 import com.wangc.test_plan.jmeter.GenerateJmx;
 import com.wangc.test_plan.bean.RunPlanBean;
@@ -68,7 +68,7 @@ public class RPController {
 
         rpService.insert(rpb);
 
-        return "redirect:/tp/report_list";
+        return "redirect:/tp/list";
     }
 
     /**
@@ -81,7 +81,7 @@ public class RPController {
     public String report_list(Model model, @RequestParam String tpId) {
         List<RunPlanBean> list = rpService.list(tpId);
         model.addAttribute("rp_list", list);
-        model.addAttribute("html_path",list.get(0).getHtmlPath());
+        model.addAttribute("html_path",list.get(0).getHtmlPath()); //未处理空异常
         return "/run_plan/list";
     }
     
@@ -89,14 +89,24 @@ public class RPController {
     * 根据test_plan id 查询并显示当前正在执行的jmeter.log
     * */
     @RequestMapping(value = "runlog_list", method = RequestMethod.GET)
-    public String runlogList(Model model, @RequestParam String tpId) {
+    public String runlogList(Model model, @RequestParam String tpId,@RequestParam(defaultValue = "0") long lastModified) {
         List<RunPlanBean> list = rpService.list(tpId);
-        model.addAttribute("rp_list", list);
-        model.addAttribute("html_path",list.get(0).getHtmlPath());
+//        model.addAttribute("rp_list", list);
+//        model.addAttribute("html_path",list.get(0).getHtmlPath());
         
-        model.addAttribute("run_log_txt",rpService.runlogList());
+        String logPath = list.get(0).getLogPath();//todo  未处理异常
+        
+        model.addAttribute("log_result",rpService.runlogList(logPath,lastModified));
         
         return "/run_plan/run_log";
+    }
+    
+    @RequestMapping(value = "ajaxRunLog",method=RequestMethod.GET)
+    @ResponseBody
+    public String ajaxRunLog(@RequestParam String logPath,String modifiedTime){
+        LogResultBean logResultBean = rpService.runlogList(logPath, Long.parseLong(modifiedTime));
+//        return "{\"r\":\""+logResultBean.getContent()+"\"}";
+        return logResultBean.getContent();
     }
 
     public String saveFile(MultipartFile file) {
