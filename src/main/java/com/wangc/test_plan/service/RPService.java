@@ -73,9 +73,7 @@ public class RPService {
 
 
     private String readFile(File file) {
-        String lineSeparator = java.security.AccessController.doPrivileged(
-                new sun.security.action.GetPropertyAction("line.separator"));
-        System.out.println(lineSeparator);
+        
         String  content = "";
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
