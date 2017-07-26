@@ -82,7 +82,7 @@ public class RPController {
         List<RunPlanBean> list = rpService.list(tpId);
         model.addAttribute("rp_list", list);
         model.addAttribute("html_path",list.get(0).getHtmlPath()); //未处理空异常
-        return "/run_plan/list";
+        return "run_plan/list";
     }
     
     /*
@@ -98,17 +98,12 @@ public class RPController {
         
         model.addAttribute("log_result",rpService.runlogList(logPath,lastModified));
         
-        return "/run_plan/run_log";
+        return "run_plan/run_log";
     }
     
-    @RequestMapping(value = "ajaxRunLog",method=RequestMethod.GET)
-    @ResponseBody
-    public String ajaxRunLog(@RequestParam String logPath,String modifiedTime){
-        LogResultBean logResultBean = rpService.runlogList(logPath, Long.parseLong(modifiedTime));
-//        return "{\"r\":\""+logResultBean.getContent()+"\"}";
-        return logResultBean.getContent();
-    }
 
+
+    //todo 移到工具类
     public String saveFile(MultipartFile file) {
         String typePath = Param.DATA_PATH;
         String dir = StringUtils.creAndGetDir(Param.USER_DIR+typePath);//动态生成的路径 /yyyy/MM

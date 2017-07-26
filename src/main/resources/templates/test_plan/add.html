@@ -37,12 +37,13 @@
 <tr>
     <td></td>
     <td>
-        <input type="radio" th:id="inputType0" th:name="inputType" th:value="0" th:selected="true"/>手工录入
-        <input type="radio" th:id="inputType1" th:name="inputType" th:value="1"/>上传jmx
+        <!--<input type="radio" th:id="inputType0" th:name="inputType" th:value="0" />手工录入-->
+        <input type="radio" th:id="inputType1" th:name="inputType" th:value="1" th:selected="true"/>上传jmx
     </td>
 </tr>
 
 
+<!--
 <div id="handInputDiv" style="display: none;">
     <form th:action="@{/tp/add}" th:method="post" th:object="${tp}">
         <table>
@@ -71,9 +72,10 @@
 
     </form>
 </div>
+-->
 
 
-<div id="uploadFileDiv" style="display: none;">
+<div id="uploadFileDiv" >
     <form th:action="@{/tp/upload}" th:id="add_form" enctype="multipart/form-data" th:method="post">
         <table>
             <tr>

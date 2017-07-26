@@ -36,12 +36,12 @@ public class TPController {
         List<TestPlanBean> list = tpService.select(null);
         model.addAttribute("tp_list",list);
 
-        return "/test_plan/list";
+        return "test_plan/list";
     }
     
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String add(Model model){
-        return "/test_plan/add";
+        return "test_plan/add";
     }
     
     @RequestMapping(value = "/add",method = RequestMethod.POST)
@@ -55,7 +55,7 @@ public class TPController {
     @RequestMapping(value = "/modify",method = RequestMethod.GET)
     public String modify(Model model,@RequestParam String id){
         model.addAttribute( "tp",tpService.selectById(id));
-        return "/test_plan/modify";
+        return "test_plan/modify";
     }
 
     @RequestMapping(value = "/modify",method = RequestMethod.POST)
@@ -65,12 +65,7 @@ public class TPController {
         System.out.println("====================================ok");
         return "redirect:/tp/list";
     }
-
-    @RequestMapping(value = "/xxx",method = RequestMethod.GET)
-    public String mo(Model model,@ModelAttribute TestPlanBean tp){
-        return "html:<h1>jello</h1>";
-    }
-    
+ 
     
     
 }

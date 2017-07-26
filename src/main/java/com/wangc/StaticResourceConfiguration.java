@@ -35,9 +35,11 @@ public class StaticResourceConfiguration extends WebMvcConfigurerAdapter {
         //将所有的/report/请求至html报告的本地路径
 //        registry.addResourceHandler("/report/**").addResourceLocations(reportResLocations);
 
-//        reportResLocations = FILE_PREX+separator+ Param.USER_DIR+Param.HTML_PATH
+        System.out.println( "===========1"+reportResLocations );
+        reportResLocations = FILE_PREX+separator+ Param.USER_DIR+Param.HTML_PATH+File.separator;
+        System.out.println( "===========2"+reportResLocations );
         
-        reportResLocations = "file:///D:/workspace_HelloWorld/testing_platform/jmeter/html/";
+//        reportResLocations = "file:///D:/workspace_HelloWorld/testing_platform/jmeter/html/";
         registry.addResourceHandler("/report/**").addResourceLocations(reportResLocations);
                               //file:///D:/workspace_HelloWorld/testing_platform/jmeter/html
         super.addResourceHandlers(registry);
