@@ -7,6 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * Created by wangchao on 2017/3/13.
@@ -19,6 +23,35 @@ public class RunJmx {
 
     private static final Logger logger = LoggerFactory.getLogger(RunJmx.class);
 
+    public static void main(String[] args) throws IOException {
+        Map map = System.getenv();
+        Iterator it = map.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry entry = (Map.Entry)it.next();
+            System.out.print(entry.getKey()+"=");
+            System.out.println(entry.getValue());
+        }
+
+
+        Properties properties = System.getProperties();
+         it =  properties.entrySet().iterator();
+        while(it.hasNext()){
+            Map.Entry entry = (Map.Entry)it.next();
+            System.out.print(entry.getKey()+"=");
+            System.out.println(entry.getValue());
+        }
+
+        System.out.println( System.getProperty("JMETER_HOME")  );
+        //linux
+        String jmeterHome = "/usr/local/apache-jmeter-3.2";//从环境变量中读取，放到ap_init 中去
+        String a = "/bin/sh";
+        String b = "-c";
+        String c = jmeterHome+"/bin/jmeter -n -t ~/TestPlan.jmx -l ~/a.jtl";
+        Runtime runtime = Runtime.getRuntime();
+        runtime.exec(new String[]{a,b,c});
+    }
+    
+    
     public static void run(RunPlanBean rpb) {
         Runtime runtime = Runtime.getRuntime();
         try {
