@@ -30,9 +30,16 @@ public class AppInitialization implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
         System.out.println("========2");
-        checkDB();//检测数据库
-        
         checkJmeterHome();//检测jmeter运行环境
+        
+        checkDB();//检测数据库 todo
+        
+        checkOS();//检测操作系统类型 todo
+        
+    }
+    
+    //检测操作系统类型，并将结果保存到全局变量中
+    private void checkOS(){
         
     }
     
