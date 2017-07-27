@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>TP_LIST</title>
+    <title>测试报告列表</title>
     <style type="text/css">
         #customers {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -31,9 +31,6 @@
         }
     </style>
     <style th:href="@{/layer/skin/default/layer.css}"></style>
-    <script th:src="@{/js/jquery-1.12.3.min.js}"></script>
-    <script th:src="@{/layer/layer.js}"></script>
-
 
 </head>
 <body>
@@ -41,28 +38,26 @@
 <table th:id="customers">
     <thead>
     <tr>
-        <th>虚拟用户数量</th>
-        <th>持续时间</th>
+        <!--<th>虚拟用户数量</th>-->
+        <!--<th>持续时间</th>-->
         <th>报告</th>
-        <!--<th>创建时间</th>-->
+        <th>创建时间</th>
     </tr>
     </thead>
     <!--/*@thymesVar id="rp" type="com.wangc.test_plan.bean.RunPlanBean"*/-->
     <!--/*@thymesVar id="rp_list" type="java.util.ArrayList"*/-->
     <tbody th:each="rp:${rp_list}">
     <tr>
-        <td th:name="users_num" th:text="${rp.usersNum}"></td>
-        <td th:name="duration" th:text="${rp.duration}"></td>
-        <td th:name="html_path" >
-            <a th:href="@{'/report'+${rp['htmlPath']}}" th:text="${rp['htmlPath']}"></a>
+        <!--<td th:name="users_num" th:text="${rp.usersNum}"></td>-->
+        <!--<td th:name="duration" th:text="${rp.duration}"></td>-->
+        <td th:name="html_path">
+            <a th:href="@{'/report'+${rp['htmlPath']}}" th:text="查看" th:target="_blank"></a>
         </td>
+        <td th:name="create_time" th:text="${rp.createTime}"></td>
     </tr>
     </tbody>
-
 </table>
-
-
+<script th:src="@{/js/jquery-1.12.3.min.js}"></script>
+<script th:src="@{/layer/layer.js}"></script>
 </body>
-
-
 </html>

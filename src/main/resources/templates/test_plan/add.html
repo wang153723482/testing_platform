@@ -43,7 +43,7 @@
 </div>
 -->
 <div id="uploadFileDiv">
-    <form th:action="@{/tp/upload}" th:id="add_form" th:enctype="multipart/form-data" th:method="post">
+    <form th:action="@{/tp/upload}" th:id="add_form" th:enctype="@{multipart/form-data}" th:method="post">
         <table>
             <tr>
                 <td>测试计划名称</td>

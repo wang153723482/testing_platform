@@ -51,7 +51,6 @@ public class RPController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String add(Model model, @ModelAttribute RunPlanBean rpb,@RequestParam MultipartFile file) {
         
-
         System.out.println(rpb);
         String dataFilePath = saveFile(file);
 
@@ -73,7 +72,6 @@ public class RPController {
 
     /**
      * 根据test_plan id 查询当前计划的所有执行日志
-     *
      * @param tpId test_plan.id
      * @return
      */
@@ -82,7 +80,7 @@ public class RPController {
         List<RunPlanBean> list = rpService.list(tpId);
         model.addAttribute("rp_list", list);
         model.addAttribute("html_path",list.get(0).getHtmlPath()); //未处理空异常
-        return "run_plan/list";
+        return "run_plan/report_list";
     }
     
     /*
@@ -91,17 +89,10 @@ public class RPController {
     @RequestMapping(value = "runlog_list", method = RequestMethod.GET)
     public String runlogList(Model model, @RequestParam String tpId,@RequestParam(defaultValue = "0") long lastModified) {
         List<RunPlanBean> list = rpService.list(tpId);
-//        model.addAttribute("rp_list", list);
-//        model.addAttribute("html_path",list.get(0).getHtmlPath());
-        
         String logPath = list.get(0).getLogPath();//todo  未处理异常
-        
         model.addAttribute("log_result",rpService.runlogList(logPath,lastModified));
-        
         return "run_plan/run_log";
     }
-    
-
 
     //todo 移到工具类
     public String saveFile(MultipartFile file) {

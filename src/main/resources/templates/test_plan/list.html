@@ -81,12 +81,12 @@
                             <td><input type="text" th:id="duration" th:name="duration"/></td>
                         </tr>
             -->
-            <tr>
+            <tr th:id="tr_upload_data" th:disabled="none">
                 <td><input th:type="checkbox" th:id="upload_data" th:name="upload_data"/>上传测试数据</td>
             </tr>
             <tr>
                 <td>
-                    <input th:type="file" th:name="file" th:id="file" th:disabled="disabled"/>
+                    <input th:type="file" th:name="file" th:id="file" />
                 </td>
             </tr>
             <tr>

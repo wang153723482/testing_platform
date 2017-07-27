@@ -34,7 +34,6 @@ public class UploadJmxController {
     /*跳转到上传页面*/
     @RequestMapping(value = "/upload", method = RequestMethod.GET)
     public String upload() {
-
         return "";
     }
 
@@ -42,7 +41,6 @@ public class UploadJmxController {
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String upload(Model model, @RequestParam MultipartFile file,
                          @RequestParam String tpName, @ModelAttribute TestPlanBean tp) {
-
         // TODO: wangc@2017/6/6  关于路径的部分，太混乱！！！ 
         String msg = "";
         String dir = StringUtils.creAndGetDir(Param.USER_DIR+Param.JMX_PATH);//动态生成的路径 /yyyy/MM
@@ -83,6 +81,5 @@ public class UploadJmxController {
         model.addAttribute("msg", msg);
         return "redirect:/tp/list";
     }
-
 
 }

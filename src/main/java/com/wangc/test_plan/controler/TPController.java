@@ -25,9 +25,6 @@ public class TPController {
     
     @Autowired
     TPService tpService;
-
-
-    
     
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(Model model,@ModelAttribute TestPlanBean tp){
@@ -65,7 +62,5 @@ public class TPController {
         System.out.println("====================================ok");
         return "redirect:/tp/list";
     }
- 
-    
     
 }

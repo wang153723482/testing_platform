@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
@@ -19,38 +20,18 @@ import java.util.Properties;
 public class RunJmx {
 
     private static String FORMAT_1 = "ddHHmmssSSS";
-    private static String JMETER_RUN_WIN = "cmd /c jmeter -n -t ${jmx} -l ${jtl} -j ${log} -e -o ${html}";
+    private static String JMETER_COMMOND = "jmeter -n -t ${jmx} -l ${jtl} -j ${log} -e -o ${html}";
 
+    private static String[] JMETER_RUN_COMMOND = new String[]{"","",""};
+    private static String LINUX_COMMOND = "/bin/sh";
+    private static String LINUX_COMMOND_PARAM = "-C";
+    private static String WIN_COMMOND = "cmd";
+    private static String WIN_COMMOND_PARAM = "/c";
+
+    private static String os = System.getProperty("os.name");
+    
     private static final Logger logger = LoggerFactory.getLogger(RunJmx.class);
 
-    public static void main(String[] args) throws IOException {
-        Map map = System.getenv();
-        Iterator it = map.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry entry = (Map.Entry)it.next();
-            System.out.print(entry.getKey()+"=");
-            System.out.println(entry.getValue());
-        }
-
-
-        Properties properties = System.getProperties();
-         it =  properties.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry entry = (Map.Entry)it.next();
-            System.out.print(entry.getKey()+"=");
-            System.out.println(entry.getValue());
-        }
-
-        System.out.println( System.getProperty("JMETER_HOME")  );
-        //linux
-        String jmeterHome = "/usr/local/apache-jmeter-3.2";//从环境变量中读取，放到ap_init 中去
-        String a = "/bin/sh";
-        String b = "-c";
-        String c = jmeterHome+"/bin/jmeter -n -t ~/TestPlan.jmx -l ~/a.jtl";
-        Runtime runtime = Runtime.getRuntime();
-        runtime.exec(new String[]{a,b,c});
-    }
-    
     
     public static void run(RunPlanBean rpb) {
         Runtime runtime = Runtime.getRuntime();
@@ -61,11 +42,10 @@ public class RunJmx {
             e.printStackTrace();
             System.out.println("Error!");
         }
-
     }
 
     /* jtlPath/logPaht/htmlPath 都是基于项目的相对路径 */
-    private static String getCommandStr(RunPlanBean rpb) {
+    private static String[] getCommandStr(RunPlanBean rpb) {
         String jmxPath = Param.USER_DIR +rpb.getTestPlanBean().getJmxSavePath();
         // TODO: wangc@2017/6/6  路径混乱，jtl、log、html的路径，都是给机器看的，使用随机或uuid即可。 
         String jtlPath = new StringBuilder("")
@@ -100,12 +80,25 @@ public class RunJmx {
         StringBuilder otherCmdPara = new StringBuilder();
         
         
-        String command = JMETER_RUN_WIN.replace("${jmx}", jmxPath)
+        String jmeterRun = "";
+        
+
+        if( os.contains("Linux") ){  //linux
+            JMETER_RUN_COMMOND[0] = LINUX_COMMOND;
+            JMETER_RUN_COMMOND[1] = LINUX_COMMOND_PARAM;
+        }else if(os.contains("Windows")){
+            JMETER_RUN_COMMOND[0] = WIN_COMMOND;
+            JMETER_RUN_COMMOND[1] = WIN_COMMOND_PARAM;
+        }
+
+        JMETER_COMMOND = JMETER_COMMOND.replace("${jmx}", jmxPath)
                 .replace("${jtl}", Param.USER_DIR + Param.JTL_PATH+jtlPath)
                 .replace("${log}", Param.USER_DIR + Param.LOG_PATH+logPath)
                 .replace("${html}", Param.USER_DIR + Param.HTML_PATH+htmlPath);
-        logger.info(command);
-        return command;
+
+        JMETER_RUN_COMMOND[2] = JMETER_COMMOND;
+        logger.info(Arrays.toString(JMETER_RUN_COMMOND) );
+        return JMETER_RUN_COMMOND;
     }
 
     private static String getName(String jmxPath) {
