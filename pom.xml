@@ -6,7 +6,7 @@
 
     <groupId>com.wangc</groupId>
     <artifactId>testing_platform</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1-SNAPSHOT</version>
 
     <packaging>jar</packaging>
 
@@ -120,15 +120,6 @@
             </plugin>
         </plugins>
 
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-           
-        </resources>
     </build>
 
 
