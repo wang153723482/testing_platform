@@ -31,25 +31,6 @@
         }
     </style>
     <style th:href="@{/layer/skin/default/layer.css}"></style>
-    <script th:src="@{/js/jquery-1.12.3.min.js}"></script>
-    <script th:src="@{/layer/layer.js}"></script>
-    <script>
-        $(document).ready(function(){
-            $("a[name='a_exc']").click(function () {
-                var o_id = $(this).parent().find("[name='id']");
-                $("#tpId").attr('value',o_id.val());
-
-                //页面层-自定义
-                layer.open({
-                    type: 1,
-                    skin: 'layui-layer-rim', //加上边框
-                    area: ['420px', '240px'], //宽高
-                    content: $("#run_plan").html()
-                });
-            });
-        });
-        
-    </script>
 
 </head>
 <body>
@@ -73,49 +54,63 @@
         <td th:name="description" th:text="${tp.description}"></td>
         <td>
             <input type="hidden" th:name="id" th:value="${tp.id}"/>
-            <a th:href="@{/tp/modify(id=${tp.id})}" th:name="a_modify" th:value="${tp.id}">修改</a>
-            <a href="#" th:name="a_exc" >执行</a>
-            <a th:href="@{/rp/report_list(tpId=${tp.id})}" th:name="a_report_list">报表</a>
-            <a th:href="@{/rp/runlog_list(tpId=${tp.id})}" th:name="a_runlog_list">运行日志</a>
-        </td>                           
+            <!--<a th:href="@{/tp/modify(id=${tp.id})}" th:name="a_modify" th:value="${tp.id}" >修改</a>-->
+            <a href="#" th:name="a_exc" th:title="点击运行测试计划">执行</a>
+            <a th:href="@{/rp/report_list(tpId=${tp.id})}" th:name="a_report_list" th:title="查看报表">报表</a>
+            <a th:href="@{/rp/runlog_list(tpId=${tp.id})}" th:name="a_runlog_list" th:title="查看运行时日志">运行日志</a>
+        </td>
     </tr>
     </tbody>
-
 </table>
-
 
 <div id="run_plan" style="display: none">
     <!--/*@thymesVar id="rp" type="com.wangc.test_plan.bean.RunPlanBean"*/-->
-    <form th:action="@{/rp/add}" th:method="post" enctype="multipart/form-data" th:object="${rp}">
-        <input type="text" th:id="tpId" th:name="tpId" />
-        对于上传的jmx，可以直接执行
+    <form th:action="@{/rp/add}" th:method="post" th:enctype="@{multipart/form-data}" th:object="${rp}">
+        <input th:type="hidden" th:id="tpId" th:name="tpId"/>
         <table>
+            <!--
+                        <tr>
+                            &lt;!&ndash;todo 如果jmx里读取到这个参数，则默认显示在这里，否则为空
+                                针对直接上传的jmx，可以读取到这个参数，如果通过平台创建的测试计划，默认为空。
+                            &ndash;&gt;
+                            <td>虚拟用户数</td>
+                            <td><input type="text" th:id="usersNum" th:name="usersNum"/></td>
+                        </tr>
+                        <tr>
+                            <td>持续时间</td>
+                            <td><input type="text" th:id="duration" th:name="duration"/></td>
+                        </tr>
+            -->
             <tr>
-                <!--todo 如果jmx里读取到这个参数，则默认显示在这里，否则为空
-                    针对直接上传的jmx，可以读取到这个参数，如果通过平台创建的测试计划，默认为空。
-                -->
-                <td>虚拟用户数</td>
-                <td><input type="text" th:id="usersNum" th:name="usersNum"/></td>
+                <td><input th:type="checkbox" th:id="upload_data" th:name="upload_data"/>上传测试数据</td>
             </tr>
             <tr>
-                <td>持续时间</td>
-                <td><input type="text" th:id="duration" th:name="duration"/></td>
-            </tr>
-            <tr >
-                <td >上传测试数据</td>
-                <td >
-                    <input type="file" name="file"/>
+                <td>
+                    <input th:type="file" th:name="file" th:id="file" th:disabled="disabled"/>
                 </td>
             </tr>
             <tr>
-                <td></td>
-                <td><input type="submit" id="submit" name=""/></td>
+                <td><input th:type="submit" th:id="submit" th:name="submit"/></td>
             </tr>
         </table>
     </form>
 </div>
-
+<script th:src="@{/js/jquery-1.12.3.min.js}"></script>
+<script th:src="@{/layer/layer.js}"></script>
+<script>
+    $(document).ready(function () {
+        $("a[name='a_exc']").click(function () {
+            var o_id = $(this).parent().find("[name='id']");
+            $("#tpId").attr('value', o_id.val());
+            //页面层-自定义
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['420px', '240px'], //宽高
+                content: $("#run_plan").html()
+            });
+        });
+    });
+</script>
 </body>
-
-
 </html>
