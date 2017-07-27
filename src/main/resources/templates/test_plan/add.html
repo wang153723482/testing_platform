@@ -2,47 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>TP_LIST_ADD</title>
+    <title>添加测试计划</title>
     <style th:href="@{/layer/skin/default/layer.css}"></style>
-    <script th:src="@{/js/jquery-1.12.3.min.js}"></script>
-    <script th:src="@{/layer/layer.js}"></script>
-    <script language="javascript">
-        $(document).ready(function () {
-
-            var handInputDiv = $("#handInputDiv");
-            var uploadFileDiv = $("#uploadFileDiv");
-
-            // uploadFileDiv   handInputDiv     inputType
-            //todo 应该根据radio的选中状态，而不是根据click来判断
-            $("input[name='inputType']").bind('click', function () {
-                var this_val = $(this).val();
-
-                if ('0' === this_val) {//手工录入
-                    handInputDiv.show();
-                    uploadFileDiv.hide();
-                } else if ('1' === this_val) {//上传jmx
-                    handInputDiv.hide();
-                    uploadFileDiv.show();
-                }
-            });
-
-        });
-
-
-    </script>
 </head>
 <body>
 <!--/*@thymesVar id="tp" type="com.wangc.test_plan.bean.TestPlanBean"*/-->
-
 <tr>
     <td></td>
     <td>
         <!--<input type="radio" th:id="inputType0" th:name="inputType" th:value="0" />手工录入-->
-        <input type="radio" th:id="inputType1" th:name="inputType" th:value="1" th:selected="true"/>上传jmx
+        <input type="radio" th:id="inputType1" th:name="inputType" th:value="1" th:checked="checked"/>上传jmx
     </td>
 </tr>
-
-
 <!--
 <div id="handInputDiv" style="display: none;">
     <form th:action="@{/tp/add}" th:method="post" th:object="${tp}">
@@ -67,33 +38,28 @@
                 <td></td>
                 <td><input type="submit" name="submit"/></td>
             </tr>
-
         </table>
-
     </form>
 </div>
 -->
-
-
-<div id="uploadFileDiv" >
-    <form th:action="@{/tp/upload}" th:id="add_form" enctype="multipart/form-data" th:method="post">
+<div id="uploadFileDiv">
+    <form th:action="@{/tp/upload}" th:id="add_form" th:enctype="multipart/form-data" th:method="post">
         <table>
             <tr>
                 <td>测试计划名称</td>
-                <td><input th:name="tpName" type="text"/></td>
+                <td><input th:name="tpName" th:type="text"/></td>
             </tr>
             <tr>
                 <td>测试描述</td>
-                <td><input th:name="description" type="text"/></td>
+                <td><input th:name="description" th:type="text"/></td>
             </tr>
             <tr>
                 <td colspan="2">
-
                     <table>
                         <tr>
                             <td>选择文件</td>
                             <td>
-                                <p>文件：<input type="file" name="file"/></p>
+                                <p><input th:type="file" th:name="file"/></p>
                             </td>
                         </tr>
                     </table>
@@ -103,11 +69,29 @@
                 <td></td>
                 <td><input type="submit" name="submit"/></td>
             </tr>
-
         </table>
-
     </form>
 </div>
+<script th:src="@{/js/jquery-1.12.3.min.js}"></script>
+<script th:src="@{/layer/layer.js}"></script>
+<script language="javascript">
+    $(document).ready(function () {
 
+        var handInputDiv = $("#handInputDiv");
+        var uploadFileDiv = $("#uploadFileDiv");
+        //todo 应该根据radio的选中状态，而不是根据click来判断
+        $("input[name='inputType']").bind('click', function () {
+            var this_val = $(this).val();
+
+            if ('0' === this_val) {//手工录入
+                handInputDiv.show();
+                uploadFileDiv.hide();
+            } else if ('1' === this_val) {//上传jmx
+                handInputDiv.hide();
+                uploadFileDiv.show();
+            }
+        });
+    });
+</script>
 </body>
 </html>
