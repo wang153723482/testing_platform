@@ -1,3 +1,12 @@
+[下载](https://github.com/wang153723482/testing_platform/releases)
+
+运行 
+    
+    java -jar testing_platform-0.1-SNAPSHOT.jar
+
+
+-----
+
 ### 【未完成】
 
 基于jmeter的测试平台
