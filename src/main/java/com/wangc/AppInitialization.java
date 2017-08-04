@@ -17,7 +17,7 @@ import java.sql.Statement;
 @Component
 public class AppInitialization implements ApplicationRunner {
 
-    private final String sqlCreateTestPlan = "CREATE TABLE `test_plan` (\n" + "  `id` INTEGER PRIMARY KEY     ,\n" + "  `tp_name` text ,\n" + "  `url` text ,\n" + "  `description` text ,\n" + "  `generater` text ,\n" + "  `protocol` text ,\n" + "  `server_name_ip` text ,\n" + "  `port_num` text ,\n" + "  `path` text ,\n" + "  `default_vu` INTEGER ,\n" + "  `default_duration` INTEGER ,\n" + "  `jmx_save_path` text ,\n" + "  `create_time` text\n" + ") ";
+    private final String sqlCreateTestPlan = "CREATE TABLE `test_plan` (\n" + "  `id` INTEGER PRIMARY KEY     ,\n" + "  `tp_name` text ,\n" + "  `url` text ,\n" + "  `description` text ,\n" + "  `generater` text ,\n" + "  `protocol` text ,\n" + "  `server_name_ip` text ,\n" + "  `port_num` text ,\n" + "  `path` text ,\n" + "  `default_vu` INTEGER ,\n" + "  `default_duration` INTEGER ,\n" + "  `jmx_save_path` text ,\n" + "  `create_time` text ,\n"+ "  `csv_data_xpath` text \n" + ") ";
     private final String sqlCreateRunPlan = "CREATE TABLE `run_plan` (\n" + "  `id` INTEGER PRIMARY KEY ,\n" + "  `tp_id` INTEGER ,\n" + "  `duration` INTEGER ,\n" + "  `users_num` INTEGER ,\n" + "  `ramp_up` INTEGER ,\n" + "  `jmx_path` TEXT ,\n" + "  `jtl_path` TEXT ,\n" + "  `log_path` TEXT ,\n" + "  `html_path` TEXT ,\n" + "  `create_time` TEXT \n" + ")";
     private Connection conn = null;
     Statement stmt = null;

@@ -7,8 +7,10 @@ import com.wangc.test_plan.bean.TestPlanBean;
 import com.wangc.test_plan.jmeter.GenerateJmx;
 import com.wangc.test_plan.bean.RunPlanBean;
 import com.wangc.test_plan.jmeter.RunJmx;
+import com.wangc.test_plan.jmeter.Tools;
 import com.wangc.test_plan.service.RPService;
 import com.wangc.test_plan.service.TPService;
+import org.dom4j.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +64,14 @@ public class RPController {
         if (!StringUtils.isEmpty(tpb.getJmxSavePath())) {
             rpb.setDefaultRampUp();
             GenerateJmx.generate(rpb);//平台创建
+        }
+
+        try {
+            Tools.updateJmx(Param.USER_DIR+tpb.getJmxSavePath(),Param.USER_DIR+rpb.getDataPath(),tpb.getCsvDataXpath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
         }
         RunJmx.run(rpb);
 

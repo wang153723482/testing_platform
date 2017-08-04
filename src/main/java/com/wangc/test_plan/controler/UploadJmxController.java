@@ -4,7 +4,9 @@ import com.wangc.Application;
 import com.wangc.comm.Param;
 import com.wangc.comm.StringUtils;
 import com.wangc.test_plan.bean.TestPlanBean;
+import com.wangc.test_plan.jmeter.Tools;
 import com.wangc.test_plan.service.TPService;
+import org.dom4j.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +63,11 @@ public class UploadJmxController {
                 logger.info(SUCCESS);
 
                 tp.setJmxSavePath(filePath);
+                try {
+                    tp.setCsvDataXpath(Tools.getCsvDataXPath(fileAllPath) );
+                } catch (DocumentException e) {
+                    e.printStackTrace(); // TODO: wangc@2017/8/2  处理异常 
+                }
                 tpService.insert(tp);
 
                 /// todo 解析 脚本，获取参数,保存至数据库，或传递给下一个页面

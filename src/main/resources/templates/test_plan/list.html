@@ -81,12 +81,14 @@
                             <td><input type="text" th:id="duration" th:name="duration"/></td>
                         </tr>
             -->
-            <tr th:id="tr_upload_data" th:disabled="none">
-                <td><input th:type="checkbox" th:id="upload_data" th:name="upload_data"/>上传测试数据</td>
+            <tr >
+                <td>
+                    <input type="checkbox" id="upload_data" name="upload_data" />上传测试数据
+                </td>
             </tr>
             <tr>
                 <td>
-                    <input th:type="file" th:name="file" th:id="file" />
+                    <div th:id="div_upload_data" ><input th:type="file" th:name="file" th:id="file" /></div>
                 </td>
             </tr>
             <tr>
@@ -97,7 +99,7 @@
 </div>
 <script th:src="@{/js/jquery-1.12.3.min.js}"></script>
 <script th:src="@{/layer/layer.js}"></script>
-<script>
+<script >
     $(document).ready(function () {
         $("a[name='a_exc']").click(function () {
             var o_id = $(this).parent().find("[name='id']");
@@ -109,6 +111,15 @@
                 area: ['420px', '240px'], //宽高
                 content: $("#run_plan").html()
             });
+        });
+
+        $("#upload_data").bind('click',function(){
+            alert(1);
+//            alert( $(this).val() );
+//            alert(1);
+//            var a = $(this).prop("checked");
+//            alert(a);
+//            $("#div_upload_data").toggle();
         });
     });
 </script>

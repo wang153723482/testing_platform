@@ -13,17 +13,18 @@
         <result property="portNum" column="port_num"></result>
         <result property="path" column="path"></result>
         <result property="jmxSavePath" column="jmx_save_path"></result>
+        <result property="csvDataXpath" column="csv_data_xpath"></result>
     </resultMap>
 
 
     <insert id="insert" parameterType="com.wangc.test_plan.bean.TestPlanBean">
-        insert into test_plan(tp_name,url,description,generater,protocol,server_name_ip,port_num,path,jmx_save_path,create_time) 
-        values(#{tpName},#{url},#{description},#{generater},#{protocol},#{serverNameIp},#{portNum},#{path},#{jmxSavePath},datetime())
+        insert into test_plan(tp_name,url,description,generater,protocol,server_name_ip,port_num,path,jmx_save_path,create_time,csv_data_xpath) 
+        values(#{tpName},#{url},#{description},#{generater},#{protocol},#{serverNameIp},#{portNum},#{path},#{jmxSavePath},datetime(),#{csvDataXpath})
     </insert>
 
     <select id="select" parameterType="com.wangc.test_plan.bean.TestPlanBean"
     resultMap="testPlanBean">
-        select id,tp_name,url,description,generater,protocol,server_name_ip,port_num,path,jmx_save_path
+        select id,tp_name,url,description,generater,protocol,server_name_ip,port_num,path,jmx_save_path,csv_data_xpath
         from test_plan
         <where>
             <if test="null!=id">

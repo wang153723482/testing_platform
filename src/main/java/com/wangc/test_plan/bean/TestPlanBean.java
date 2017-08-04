@@ -25,6 +25,7 @@ public class TestPlanBean {
     
     private String path;
     private String jmxSavePath;
+    private String csvDataXpath;
 
 
     public String getId() {
@@ -107,6 +108,14 @@ public class TestPlanBean {
         this.jmxSavePath = jmxSavePath;
     }
 
+    public String getCsvDataXpath() {
+        return csvDataXpath;
+    }
+
+    public void setCsvDataXpath(String csvDataXpath) {
+        this.csvDataXpath = csvDataXpath;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("TestPlanBean{");
@@ -120,6 +129,7 @@ public class TestPlanBean {
         sb.append(", portNum='").append(portNum).append('\'');
         sb.append(", path='").append(path).append('\'');
         sb.append(", jmxSavePath='").append(jmxSavePath).append('\'');
+        sb.append(", csvDataXpath='").append(csvDataXpath).append('\'');
         sb.append('}');
         return sb.toString();
     }
