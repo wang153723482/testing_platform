@@ -83,7 +83,7 @@
             -->
             <tr >
                 <td>
-                    <input type="checkbox" id="upload_data" name="upload_data" />上传测试数据
+                    上传测试数据为可选项，如果需要上传测试数据，则jmx中必须包含一个CSV Data Set Config
                 </td>
             </tr>
             <tr>
@@ -99,7 +99,8 @@
 </div>
 <script th:src="@{/js/jquery-1.12.3.min.js}"></script>
 <script th:src="@{/layer/layer.js}"></script>
-<script >
+<script language="javascript">
+    
     $(document).ready(function () {
         $("a[name='a_exc']").click(function () {
             var o_id = $(this).parent().find("[name='id']");
@@ -113,14 +114,6 @@
             });
         });
 
-        $("#upload_data").bind('click',function(){
-            alert(1);
-//            alert( $(this).val() );
-//            alert(1);
-//            var a = $(this).prop("checked");
-//            alert(a);
-//            $("#div_upload_data").toggle();
-        });
     });
 </script>
 </body>

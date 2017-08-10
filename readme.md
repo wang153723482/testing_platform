@@ -8,7 +8,7 @@
 ### 运行 
     
     java -jar testing_platform-0.1-SNAPSHOT.jar
-浏览器访问http://127.0.0.1:8080/tp/add
+浏览器访问http://127.0.0.1:20302/tp/add
 
 如果在远端服务器上运行了jar文件，则需要将ip改为对应服务器ip即可。
 
