@@ -24,11 +24,6 @@ public class StaticResourceConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        System.out.println("==================");
-        System.out.println("==================");
-        System.out.println("==================");
-        System.out.println("==================");
-        System.out.println("==================");
         // TODO: wangc@2017/3/15  这里可能需要根据OS不同配置不同的路径，win：file后有3个/，linux：file后有2个/，因为linux的目录本身就是/开头 
 
 
@@ -38,13 +33,11 @@ public class StaticResourceConfiguration extends WebMvcConfigurerAdapter {
         }
         //win:   file:///c:dir_name
         //linux:  file:///home/wangc/dir_name
-        String reportResLocations = FILE_PREX+separator+ Param.USER_DIR+Param.HTML_PATH;
+//        String reportResLocations = FILE_PREX+separator+ Param.USER_DIR+Param.HTML_PATH;
         //将所有的/report/请求至html报告的本地路径
 //        registry.addResourceHandler("/report/**").addResourceLocations(reportResLocations);
 
-        System.out.println( "===========1"+reportResLocations );
-        reportResLocations = FILE_PREX+separator+ Param.USER_DIR+Param.HTML_PATH+File.separator;
-        System.out.println( "===========2"+reportResLocations );
+        String reportResLocations = FILE_PREX+separator+ Param.USER_DIR+Param.HTML_PATH+File.separator;
         
 //        reportResLocations = "file:///D:/workspace_HelloWorld/testing_platform/jmeter/html/";
         registry.addResourceHandler("/report/**").addResourceLocations(reportResLocations);

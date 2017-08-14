@@ -44,7 +44,6 @@
     </thead>
     <tbody>
     <tr>
-        <!--<td th:name="content" th:text="${log_result.content}"></td>-->
         <td>
             <span th:id="content" th:utext="${log_result.content.replace('##@','&lt;br/&gt;')}"></span>
         </td>
@@ -54,8 +53,6 @@
 <script th:src="@{/js/jquery-1.12.3.min.js}"></script>
 <script th:src="@{/layer/layer.js}"></script>
 <script th:inline="javascript">
-    //        alert( [[${log_result.logPath}]] ); //js中获取session中值
-    //定时执行 返回并重新赋值
     $(document).ready(function () {
         setInterval("reflush()", 5000);
     });

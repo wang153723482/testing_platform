@@ -53,26 +53,22 @@ public class RPController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String add(Model model, @ModelAttribute RunPlanBean rpb,@RequestParam MultipartFile file) {
         
-        System.out.println(rpb);
-        String dataFilePath = saveFile(file);
-
         TestPlanBean tpb = tpService.selectById(rpb.getTpId());
         rpb.setTestPlanBean(tpb);
         rpb.setJmxPath(tpb.getJmxSavePath());
-        rpb.setDataPath(dataFilePath);
-
-        if (!StringUtils.isEmpty(tpb.getJmxSavePath())) {
-            rpb.setDefaultRampUp();
-            GenerateJmx.generate(rpb);//平台创建
+        
+        if(null!=file){
+            String dataFilePath = saveFile(file);
+            rpb.setDataPath(dataFilePath);
+            try {
+                Tools.updateJmx(Param.USER_DIR+tpb.getJmxSavePath(),Param.USER_DIR+rpb.getDataPath(),tpb.getCsvDataXpath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (DocumentException e) {
+                e.printStackTrace();
+            }
         }
-
-        try {
-            Tools.updateJmx(Param.USER_DIR+tpb.getJmxSavePath(),Param.USER_DIR+rpb.getDataPath(),tpb.getCsvDataXpath());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
+        
         RunJmx.run(rpb);
 
         rpService.insert(rpb);
@@ -89,7 +85,7 @@ public class RPController {
     public String report_list(Model model, @RequestParam String tpId) {
         List<RunPlanBean> list = rpService.list(tpId);
         model.addAttribute("rp_list", list);
-        model.addAttribute("html_path",list.get(0).getHtmlPath()); //未处理空异常
+//        model.addAttribute("html_path",list.get(0).getHtmlPath()); //未处理空异常
         return "run_plan/report_list";
     }
     

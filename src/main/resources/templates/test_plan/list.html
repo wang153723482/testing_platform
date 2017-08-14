@@ -40,7 +40,6 @@
     <thead>
     <tr>
         <th>测试计划名称</th>
-        <th>url</th>
         <th>测试描述</th>
         <th>操作</th>
     </tr>
@@ -50,7 +49,6 @@
     <tbody th:each="tp:${tp_list}">
     <tr>
         <td th:name="tp_name" th:text="${tp.tpName}"></td>
-        <td th:name="url" th:text="${tp.url}"></td>
         <td th:name="description" th:text="${tp.description}"></td>
         <td>
             <input type="hidden" th:name="id" th:value="${tp.id}"/>
@@ -82,16 +80,21 @@
                         </tr>
             -->
             <tr >
-                <td>
+                <td colspan="2">
                     上传测试数据为可选项，如果需要上传测试数据，则jmx中必须包含一个CSV Data Set Config
                 </td>
             </tr>
+            <tr ><td colspan="2"><br/></td></tr>
             <tr>
+                <td >
+                    上传测试数据:
+                </td>
                 <td>
                     <div th:id="div_upload_data" ><input th:type="file" th:name="file" th:id="file" /></div>
                 </td>
             </tr>
             <tr>
+                <td ></td>
                 <td><input th:type="submit" th:id="submit" th:name="submit"/></td>
             </tr>
         </table>

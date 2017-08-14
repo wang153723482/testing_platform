@@ -28,7 +28,6 @@ public class TPController {
     
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(Model model,@ModelAttribute TestPlanBean tp){
-        System.out.println("==========="+tp.getTpName());
         
         List<TestPlanBean> list = tpService.select(null);
         model.addAttribute("tp_list",list);

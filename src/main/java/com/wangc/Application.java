@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 /**
  * Created by wangchao on 2017/2/10.
  */
@@ -25,8 +28,7 @@ public class Application {
         return "index";
     }
     
-    public static void main(String[] args){
-        logger.info("Application starting...");
+    public static void main(String[] args) throws UnknownHostException {
         SpringApplication.run(Application.class,args);
     }
 }

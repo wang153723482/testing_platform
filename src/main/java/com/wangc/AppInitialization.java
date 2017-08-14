@@ -24,15 +24,14 @@ public class AppInitialization implements ApplicationRunner {
     private final String dbName = "testing_platform.db";
 
     static{
-        System.out.println("========1");
+//        System.out.println("========1");
     }
 
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
-        System.out.println("========2");
         checkJmeterHome();//检测jmeter运行环境
         
-        checkDB();//检测数据库 todo
+        checkDB();//检测数据库 
         
         checkOS();//检测操作系统类型 todo
         
