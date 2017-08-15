@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="footer">
+    <script th:src="@{/js/jquery-1.12.3.min.js}"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+    <script language="javascript">
+        ////导航的hover效果、二级菜单等功能，需要依赖element模块
+        layui.use('element',function(){
+            var element = layui.element();
+        });
+    </script>
+   
+</div>
+</body>
+</html>
