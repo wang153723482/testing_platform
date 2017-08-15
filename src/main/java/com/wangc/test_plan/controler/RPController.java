@@ -56,8 +56,8 @@ public class RPController {
         TestPlanBean tpb = tpService.selectById(rpb.getTpId());
         rpb.setTestPlanBean(tpb);
         rpb.setJmxPath(tpb.getJmxSavePath());
-        
-        if(null!=file){
+                                                               
+        if(null!=file && !file.isEmpty()){
             String dataFilePath = saveFile(file);
             rpb.setDataPath(dataFilePath);
             try {

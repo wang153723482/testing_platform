@@ -19,7 +19,7 @@
 
     <insert id="insert" parameterType="com.wangc.test_plan.bean.TestPlanBean">
         insert into test_plan(tp_name,url,description,generater,protocol,server_name_ip,port_num,path,jmx_save_path,create_time,csv_data_xpath) 
-        values(#{tpName},#{url},#{description},#{generater},#{protocol},#{serverNameIp},#{portNum},#{path},#{jmxSavePath},datetime(),#{csvDataXpath})
+        values(#{tpName},#{url},#{description},#{generater},#{protocol},#{serverNameIp},#{portNum},#{path},#{jmxSavePath},datetime(CURRENT_TIMESTAMP,'localtime'),#{csvDataXpath})
     </insert>
 
     <select id="select" parameterType="com.wangc.test_plan.bean.TestPlanBean"

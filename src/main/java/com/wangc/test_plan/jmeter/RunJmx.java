@@ -65,6 +65,7 @@ public class RunJmx {
                 .append(Param.LOG_SUFFIX)
                 .toString();
         
+        System.out.println("======"+System.currentTimeMillis());
         String htmlPath = new StringBuilder("")
                 .append(StringUtils.creAndGetDir(Param.USER_DIR + Param.HTML_PATH))
                 .append(File.separator)
@@ -74,16 +75,10 @@ public class RunJmx {
                 .toString();
         rpb.setJtlPath(jtlPath);
         rpb.setLogPath(logPath);
-        rpb.setHtmlPath(htmlPath+File.separator+"index.html");  // TODO: 2017/3/20 这里用相对路径，执行cmd命令时用绝对路径，需要修改 
+        rpb.setHtmlPath(htmlPath+File.separator+"index.html"); 
         // TODO: wangc@2017/3/14  可能需要判断OS来执行不同的命令
         
-        StringBuilder otherCmdPara = new StringBuilder();
-        
-        
-        String jmeterRun = "";
-        
-
-        if( os.contains("Linux") ){  //linux
+        if( os.contains("Linux") ){  //linux  todo 从初始化中读取
             JMETER_RUN_COMMOND[0] = LINUX_COMMOND;
             JMETER_RUN_COMMOND[1] = LINUX_COMMOND_PARAM;
         }else if(os.contains("Windows")){
@@ -91,12 +86,12 @@ public class RunJmx {
             JMETER_RUN_COMMOND[1] = WIN_COMMOND_PARAM;
         }
 
-        JMETER_COMMOND = JMETER_COMMOND.replace("${jmx}", jmxPath)
+        String myCmd = JMETER_COMMOND.replace("${jmx}", jmxPath)
                 .replace("${jtl}", Param.USER_DIR + Param.JTL_PATH+jtlPath)
                 .replace("${log}", Param.USER_DIR + Param.LOG_PATH+logPath)
                 .replace("${html}", Param.USER_DIR + Param.HTML_PATH+htmlPath);
 
-        JMETER_RUN_COMMOND[2] = JMETER_COMMOND;
+        JMETER_RUN_COMMOND[2] = myCmd;
         logger.info(Arrays.toString(JMETER_RUN_COMMOND) );
         return JMETER_RUN_COMMOND;
     }

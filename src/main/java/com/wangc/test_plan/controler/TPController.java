@@ -31,7 +31,6 @@ public class TPController {
         
         List<TestPlanBean> list = tpService.select(null);
         model.addAttribute("tp_list",list);
-
         return "test_plan/list";
     }
     
@@ -43,8 +42,6 @@ public class TPController {
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public String add(Model model, TestPlanBean tp){
         tpService.insert(tp);
-//        
-//        return "/test_plan/add";
         return "redirect:/tp/list?sName=qwe";
     }
 
@@ -58,7 +55,6 @@ public class TPController {
     public String modify(Model model,@ModelAttribute TestPlanBean tp){
         System.out.println(tp);
         tpService.update(tp);
-        System.out.println("====================================ok");
         return "redirect:/tp/list";
     }
     

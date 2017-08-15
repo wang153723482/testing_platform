@@ -131,7 +131,7 @@
                 #{createTime,jdbcType=DATE},
             </if>
             <if test="createTime == null or createTime==''" >
-                datetime(),
+                datetime(CURRENT_TIMESTAMP,'localtime'),
             </if>
         </trim>
     </insert>
