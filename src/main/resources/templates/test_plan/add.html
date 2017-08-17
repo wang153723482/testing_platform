@@ -17,7 +17,8 @@
 <div th:replace="header::header"></div>
 <hr/>
 <div id="main">
-    <form class="layui-form" th:action="@{/tp/upload}" th:id="add_form" th:enctype="@{multipart/form-data}"
+    <!--/*@thymesVar id="tp" type="com.wangc.test_plan.bean.TestPlanBean"*/-->
+    <form class="layui-form" th:action="@{/tp/upload}" th:id="add_form" th:enctype="@{multipart/form-data}" th:object="${tp}"
           th:method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">测试计划名称</label>

@@ -69,7 +69,11 @@
 
     layui.use('layer', function () {
         $("a[name='a_exc']").click(function () {
-            var o_id = $(this).parent().find("[name='id']");
+            var o_id = $(this).parent().parent().find("[name='id']");
+            alert("=="+o_id+"__");
+            alert($(this).html());
+            alert($(this).parent().html());
+            alert($(this).parent().parent().html());
             $("#tpId").attr('value', o_id.val());
             //页面层-自定义
             layer.open({

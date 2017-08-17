@@ -53,7 +53,7 @@ public class RPController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String add(Model model, @ModelAttribute RunPlanBean rpb,@RequestParam MultipartFile file) {
         
-        TestPlanBean tpb = tpService.selectById(rpb.getTpId());
+        TestPlanBean tpb = tpService.selectById(rpb.getTpId());// TODO: wangc@2017/8/17  异常是查不到数据，未处理 
         rpb.setTestPlanBean(tpb);
         rpb.setJmxPath(tpb.getJmxSavePath());
                                                                
