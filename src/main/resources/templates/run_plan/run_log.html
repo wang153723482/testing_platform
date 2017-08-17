@@ -4,39 +4,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>执行日志</title>
     <style type="text/css">
-        #customers {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            width: 100%;
-            border-collapse: collapse;
-        }
 
-        #customers td, #customers th {
-            font-size: 1em;
-            border: 1px solid #98bf21;
-            padding: 3px 7px 2px 7px;
-        }
-
-        #customers th {
-            font-size: 1.1em;
-            text-align: left;
-            padding-top: 5px;
-            padding-bottom: 4px;
-            background-color: #A7C942;
-            color: #ffffff;
-        }
-
-        #customers tr.alt td {
-            color: #000000;
-            background-color: #EAF2D3;
-        }
     </style>
-    <style th:href="@{/layer/skin/default/layer.css}"></style>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all"/>
 </head>
 <body>
+<div th:replace="header::header"></div>
+<hr/>
 <!--/*@thymesVar id="log_result" type="com.wangc.test_plan.bean.LogResultBean"*/-->
 <input th:type="hidden" id="logPath" name="logPath" th:value="${log_result.logPath}"/>
 <input th:type="hidden" id="modifiedTime" name="modifiedTime" th:value="${log_result.modifiedTime}"/>
-<table th:id="customers">
+
+<table class="layui-table" lay-skin="line">
     <thead>
     <tr>
         <th>执行日志</th>
@@ -51,7 +30,7 @@
     </tbody>
 </table>
 <script th:src="@{/js/jquery-1.12.3.min.js}"></script>
-<script th:src="@{/layer/layer.js}"></script>
+<script th:src="@{/layui/layui.js}"></script>
 <script th:inline="javascript">
     $(document).ready(function () {
         setInterval("reflush()", 5000);

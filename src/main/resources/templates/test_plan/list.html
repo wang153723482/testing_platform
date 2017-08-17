@@ -3,13 +3,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>测试计划列表</title>
-    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"  media="all"/>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all"/>
 </head>
 <body>
 <div th:replace="header::header"></div>
-
+<hr/>
 <!--/*@thymesVar id="tp" type="com.wangc.test_plan.bean.TestPlanBean"*/-->
-<table th:id="customers">
+<table class="layui-table">
     <thead>
     <tr>
         <th>测试计划名称</th>
@@ -26,9 +26,11 @@
         <td>
             <input type="hidden" th:name="id" th:value="${tp.id}"/>
             <!--<a th:href="@{/tp/modify(id=${tp.id})}" th:name="a_modify" th:value="${tp.id}" >修改</a>-->
-            <a href="#" th:name="a_exc" th:title="点击运行测试计划">执行</a>
-            <a th:href="@{/rp/report_list(tpId=${tp.id})}" th:name="a_report_list" th:title="查看报表">报表</a>
-            <a th:href="@{/rp/runlog_list(tpId=${tp.id})}" th:name="a_runlog_list" th:title="查看运行时日志">运行日志</a>
+            <span class="layui-breadcrumb" lay-separator="|">
+                <a href="#" th:name="a_exc" th:title="点击运行测试计划">执行</a>
+                <a th:href="@{/rp/report_list(tpId=${tp.id})}" th:name="a_report_list" th:title="查看报表">报表</a>
+                <a th:href="@{/rp/runlog_list(tpId=${tp.id})}" th:name="a_runlog_list" th:title="查看运行时日志">运行日志</a>
+            </span>
         </td>
     </tr>
     </tbody>
@@ -36,28 +38,28 @@
 
 <div id="run_plan" style="display: none">
     <!--/*@thymesVar id="rp" type="com.wangc.test_plan.bean.RunPlanBean"*/-->
-    <form th:action="@{/rp/add}" th:method="post" th:enctype="@{multipart/form-data}" th:object="${rp}">
+    <form th:action="@{/rp/add}" class="layui-form" th:method="post" th:enctype="@{multipart/form-data}"
+          th:object="${rp}">
         <input th:type="hidden" th:id="tpId" th:name="tpId"/>
-        <table>
-            <tr >
-                <td colspan="2">
-                    上传测试数据为可选项，如果需要上传测试数据，则jmx中必须包含一个CSV Data Set Config
-                </td>
-            </tr>
-            <tr ><td colspan="2"><br/></td></tr>
-            <tr>
-                <td >
-                    上传测试数据:
-                </td>
-                <td>
-                    <div th:id="div_upload_data" ><input th:type="file" th:name="file" th:id="file" /></div>
-                </td>
-            </tr>
-            <tr>
-                <td ></td>
-                <td><input class="layui-btn layui-btn-primary" th:type="submit" th:id="submit" th:name="submit"/></td>
-            </tr>
-        </table>
+        <fieldset class="layui-elem-field">
+            <legend>说明</legend>
+            <div class="layui-field-box">
+                上传测试数据为可选项，如果需要上传测试数据，则jmx中必须包含一个CSV Data Set Config
+            </div>
+        </fieldset>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 90px;">上传测试数据</label>
+            <div class="layui-input-block" style="margin-right: 50px;padding: 9px 15px;">
+                <!--<input type="text" name="title" required="required"  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input"/>-->
+                <input th:type="file" th:name="file" class="layui-btn layui-btn-mini" style="background-color: #ffffff;"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input class="layui-btn layui-btn-primary" th:type="submit" th:id="submit" th:name="submit"/>
+            </div>
+        </div>
     </form>
 </div>
 
@@ -65,7 +67,7 @@
 <script th:src="@{/layui/layui.js}"></script>
 <script language="javascript">
 
-    layui.use('layer',function () {
+    layui.use('layer', function () {
         $("a[name='a_exc']").click(function () {
             var o_id = $(this).parent().find("[name='id']");
             $("#tpId").attr('value', o_id.val());
@@ -73,11 +75,15 @@
             layer.open({
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
-                area: ['420px', '240px'], //宽高
+                area: ['450px', '280px'], //宽高
                 content: $("#run_plan").html()
             });
         });
+    });
 
+    ////导航的hover效果、二级菜单等功能，需要依赖element模块
+    layui.use('element', function () {
+        var element = layui.element();
     });
 </script>
 </body>

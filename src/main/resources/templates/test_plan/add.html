@@ -4,37 +4,44 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>添加测试计划</title>
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all"/>
-   
+    <style type="text/css">
+        .input-my{
+            width: 300px;
+        }
+        #main label{
+            width: 120px;
+        }
+    </style>
 </head>
 <body>
 <div th:replace="header::header"></div>
 <hr/>
-<div >
+<div id="main">
     <form class="layui-form" th:action="@{/tp/upload}" th:id="add_form" th:enctype="@{multipart/form-data}"
           th:method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">测试计划名称</label>
             <div class="layui-input-block">
                 <input type="text" name="tpName" required="required" lay-verify="required" placeholder="请输入标题" autocomplete="off"
-                       class="layui-input"/>
+                       class="layui-input input-my"/>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">测试描述</label>
             <div class="layui-input-block">
                 <input type="text" name="description" required="required" lay-verify="required" placeholder="请输入标题" autocomplete="off"
-                       class="layui-input"/>
+                       class="layui-input input-my"/>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">上传脚本文件</label>
-            <div class="layui-input-block">
-                <input th:type="file" th:name="file"/>
+            <div class="layui-input-block" style="padding: 9px 15px;">
+                <input th:type="file" th:name="file" class="layui-btn layui-btn-mini" style="background-color: #ffffff;"/>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <input type="submit" name="submit"/>
+                <input type="submit" name="submit" class="layui-btn layui-btn-primary"/>
             </div>
         </div>
 
