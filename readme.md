@@ -1,19 +1,19 @@
 [下载](https://github.com/wang153723482/testing_platform/releases)
 
 ### 环境
-1. windows 7 或 ~~ubuntu 16.04-10~~
+1. windows 7 或 ubuntu 16.04-10
 2. 安装jdk 1.8，并配置环境变量。（即，在命令提示符/终端中输入`java -version`能返回版本信息）
-3. 安装jmeter 3.2，并配置环境变量。（即，在命令提示符/终端中输入`jmeter -v`能返回版本信息）
+3. 安装jmeter 3.2，并配置环境变量，添加`JMETER_HOME`环境变量。（即，在命令提示符/终端中输入`jmeter -v`能返回版本信息）
 
 ### 运行 
     
     java -jar testing_platform-0.1-SNAPSHOT.jar
-浏览器访问http://127.0.0.1:20302/tp/add
+浏览器访问 http://127.0.0.1:20302
 
-如果在远端服务器上运行了jar文件，则需要将ip改为对应服务器ip即可。
+如果在远程服务器上运行了jar文件，则需要将ip改为对应服务器ip即可。
 
 ### 原理
-上传/新建jmx脚本，通过执行 `jmeter -n -t xxx.jmx -o -p dir` 来运行脚本并生成html报告
+上传/新建jmx脚本，通过java执行 `jmeter -n -t xxx.jmx -o -p dir` 来运行脚本并生成html报告。
 
 web框架基于springboot，数据库使用了轻量级的SQLite。
 
