@@ -2,15 +2,21 @@
 
 ### 环境
 1. windows 7 或 ubuntu 16.04-10
-2. 安装jdk 1.8，并配置环境变量。（即，在命令提示符/终端中输入`java -version`能返回版本信息）
-3. 安装jmeter 3.2，并配置环境变量，添加`JMETER_HOME`环境变量。（即，在命令提示符/终端中输入`jmeter -v`能返回版本信息）
+2. 安装jdk 1.8，并配置环境变量。
+3. 安装jmeter 3.2。对于windows操作系统，必须配置环境变量；对于linux操作系统，需要将jmeter安装目录填写到配置文件 `JMETER_HOME.config` 中，跟jar文件放在同一目录下。
 
 ### 运行 
     
     java -jar testing_platform-0.1-SNAPSHOT.jar
-浏览器访问 http://127.0.0.1:20302
+     
+如果在本机运行，浏览器访问 http://本机ip:20302
 
-如果在远程服务器上运行了jar文件，则需要将ip改为对应服务器ip即可。
+如果在远程服务器上运行，则需要将ip改为对应服务器ip即可。
+
+
+指定端口运行
+
+    java -jar testing_platform-0.1-SNAPSHOT.jar --server.port=9999
 
 ### 原理
 上传/新建jmx脚本，通过java执行 `jmeter -n -t xxx.jmx -o -p dir` 来运行脚本并生成html报告。
