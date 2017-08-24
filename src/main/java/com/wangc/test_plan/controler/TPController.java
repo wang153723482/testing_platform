@@ -2,18 +2,11 @@ package com.wangc.test_plan.controler;
 
 import com.wangc.test_plan.bean.TestPlanBean;
 import com.wangc.test_plan.service.TPService;
-import org.beetl.core.Configuration;
-import org.beetl.core.GroupTemplate;
-import org.beetl.core.Template;
-import org.beetl.core.resource.FileResourceLoader;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 /**
