@@ -3,7 +3,7 @@
 ### 环境
 1. windows 7 或 ubuntu 16.04-10
 2. 安装jdk 1.8，并配置环境变量。
-3. 安装jmeter 3.2。对于windows操作系统，必须配置环境变量；对于linux操作系统，需要将jmeter安装目录填写到配置文件 `JMETER_HOME.config` 中，跟jar文件放在同一目录下。
+3. 安装jmeter 3.2。对于windows操作系统，必须配置环境变量；对于linux操作系统，需要新建配置文件 `JMETER_HOME.config` ，填入jmeter安装目录，例如`/usr/local/apache-jmeter-3.2`，跟jar文件放在同一目录下。
 
 ### 运行 
     
