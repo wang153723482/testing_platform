@@ -2,9 +2,7 @@ package com.wangc.test_plan.controler;
 
 import com.wangc.comm.Param;
 import com.wangc.comm.StringUtils;
-import com.wangc.test_plan.bean.LogResultBean;
 import com.wangc.test_plan.bean.TestPlanBean;
-import com.wangc.test_plan.jmeter.GenerateJmx;
 import com.wangc.test_plan.bean.RunPlanBean;
 import com.wangc.test_plan.jmeter.RunJmx;
 import com.wangc.test_plan.jmeter.Tools;

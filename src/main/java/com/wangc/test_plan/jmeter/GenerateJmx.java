@@ -8,14 +8,11 @@ import org.beetl.core.Configuration;
 import org.beetl.core.GroupTemplate;
 import org.beetl.core.Template;
 import org.beetl.core.resource.FileResourceLoader;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import sun.dc.pr.PRError;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.util.Random;
 
 /**
  * Created by wangchao on 2017/3/9.
@@ -35,7 +32,6 @@ public class GenerateJmx {
 
     public static void generate(RunPlanBean rpb) {
         try {
-            System.out.println("==222=====");
             System.out.println(rpb.toString());
 
             String root = TPController.class.getClassLoader().getResource("").getPath() + "beetl";
@@ -50,7 +46,6 @@ public class GenerateJmx {
             t.binding("v_ramp_up", rpb.getRampUp());
             TestPlanBean tpb = rpb.getTestPlanBean(); // TODO: wangc@2017/3/13  不够优雅，改成解析成map，直接binding map 
             if (null != tpb) {
-                System.out.println("===3===");
                 t.binding("v_server_name", tpb.getServerNameIp());
                 t.binding("v_port", tpb.getPortNum());
                 t.binding("v_prol", tpb.getProtocol());

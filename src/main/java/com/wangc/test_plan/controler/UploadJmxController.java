@@ -1,6 +1,5 @@
 package com.wangc.test_plan.controler;
 
-import com.wangc.Application;
 import com.wangc.comm.Param;
 import com.wangc.comm.StringUtils;
 import com.wangc.test_plan.bean.TestPlanBean;
