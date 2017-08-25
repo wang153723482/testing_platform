@@ -6,7 +6,7 @@
 
     <groupId>com.wangc</groupId>
     <artifactId>testing_platform</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.2-SNAPSHOT</version>
 
     <packaging>jar</packaging>
 
@@ -30,11 +30,6 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-    <!--    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
--->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -47,13 +42,6 @@
             <artifactId>druid</artifactId>
             <version>1.0.18</version>
         </dependency>
-
-
-  <!--      <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <version>1.5.1.RELEASE</version>
-        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.beetl/beetl-core -->
         <dependency>
@@ -98,10 +86,5 @@
         </plugins>
 
     </build>
-
-
-
-
-
 
 </project>
